@@ -15,10 +15,12 @@ public class GameObject {
     }
 
     public void draw(PApplet applet){
-        double y2 = 5.0*Math.sin(direction);
-        double x2 = 5.0*Math.cos(direction);
-        System.out.println(y2);
-        applet.line((float)x, (float)y, (float)x2, (float)y2);
-        applet.circle(x, y, 25);
+    }
+
+    public int getX(){
+        return this.x;
+    }
+    public int getY(){
+        return this.y;
     }
 }

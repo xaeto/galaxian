@@ -1,13 +1,12 @@
-import models.GameObject;
+import scenes.MainMenu;
 import models.Player;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
-
-import java.util.ArrayList;
+import scenes.GameScene;
 
 public class Main extends PApplet {
-    private Player player;
-    private ArrayList<GameObject> gameObjects = new ArrayList<>();
+    private MainMenu _menu;
+    private GameScene _gameScene;
 
     public static void main(String[] args) {
         PApplet.main(Main.class);
@@ -15,33 +14,31 @@ public class Main extends PApplet {
 
     @Override
     public void draw() {
-        background(42);
-        for(int i=0; i < gameObjects.size(); ++i) {
-            GameObject obj = gameObjects.get(i);
-            obj.draw(this);
-        }
+        // draw currentScene, saved in GameState
+        GameState.CurrentScene.drawScene();
     }
 
     @Override
     public void keyPressed(KeyEvent event){
         int keyCode = event.getKeyCode();
-        System.out.println(keyCode);
 
         // move right
         if(keyCode == 39){
-            player.moveRight();
+            System.out.println("Switching to MainMenu");
+            GameState.CurrentScene = _menu;
         }
         // move left
         if(keyCode == 37){
-            player.moveLeft();
+            System.out.println("Switching to GameScene");
+            GameState.CurrentScene = _gameScene;
         }
     }
 
     @Override
     public void setup() {
-        Player player = new Player(width/2, height -25);
-        this.player = player;
-        gameObjects.add(player);
+        _menu = new MainMenu(this, width, height);
+        GameState.CurrentScene = _menu;
+        _gameScene = new GameScene(this, width, height);
     }
 
     @Override
