@@ -1,6 +1,7 @@
 package scenes;
 
 import models.UIComponent;
+import models.UILabel;
 import processing.core.PApplet;
 import scenes.Scene;
 
@@ -13,11 +14,15 @@ public class MainMenu extends Scene {
     @Override
     public void buildScene(){
         // Logo
+        var test = new UILabel(
+                _applet,
+                (float) _applet.width /2 ,
+                (float) _applet.height / 2,
+                0
+        );
+        test.setText("test");
         RegisterComponent(
-                new UIComponent(
-                        _applet.loadImage("./assets/logo.png"),
-                        _applet.width /2 , _applet.height / 2, 0
-                )
+                test
         );
     }
 }

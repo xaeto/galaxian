@@ -1,20 +1,29 @@
 package models;
 
 import processing.core.PApplet;
+import spritelib.ANCHORTYPE;
+import spritelib.MultiSprite;
 import spritelib.Point;
 import spritelib.SingleSprite;
 
 public class Player extends GameObject {
-    private SingleSprite playerSprite;
+    public Player(int x, int y) {
+        super(x, 550);
+    }
 
-    public Player(PApplet applet, int x, int y) {
-        super(x, 400);
-        playerSprite = new SingleSprite(applet.loadImage("./assets/ball.png"));
+    public void setup(PApplet applet){
+        sprite = new MultiSprite(15, 16, ANCHORTYPE.CENTER);
+        var img = applet.loadImage("./assets/sprites.png");
+        ((MultiSprite)sprite).addFrames(
+                applet,
+                img,
+                1, 70, 2
+        );
     }
 
     @Override
     public void draw(PApplet applet) {
-        playerSprite.draw(applet, new Point(this.getX(), this.getY()));
+        sprite.draw(applet, new Point(this.getX(), this.getY()));
     }
 
     public void moveLeft(){

@@ -7,7 +7,6 @@ import scenes.GameScene;
 public class Main extends PApplet {
     private MainMenu _menu;
     private GameScene _gameScene;
-
     public static void main(String[] args) {
         PApplet.main(Main.class);
     }
@@ -15,7 +14,9 @@ public class Main extends PApplet {
     @Override
     public void draw() {
         // draw currentScene, saved in GameState
-        GameState.CurrentScene.drawScene();
+        // GameState.CurrentScene.drawScene();
+        _gameScene.drawScene();
+        scale(2);
     }
 
     @Override
@@ -24,13 +25,11 @@ public class Main extends PApplet {
 
         // move right
         if(keyCode == 39){
-            System.out.println("Switching to MainMenu");
-            GameState.CurrentScene = _menu;
+            GameState.Player.moveRight();
         }
         // move left
         if(keyCode == 37){
-            System.out.println("Switching to GameScene");
-            GameState.CurrentScene = _gameScene;
+            GameState.Player.moveLeft();
         }
     }
 
@@ -38,7 +37,11 @@ public class Main extends PApplet {
     public void setup() {
         _menu = new MainMenu(this, width, height);
         GameState.CurrentScene = _menu;
+        frameRate(24);
+        smooth();
         _gameScene = new GameScene(this, width, height);
+        GameState.Player = _gameScene.InitializePlayer();
+        _gameScene.RegisterGameObject(GameState.Player);
     }
 
     @Override

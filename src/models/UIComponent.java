@@ -1,5 +1,6 @@
 package models;
 
+import processing.core.PApplet;
 import processing.core.PImage;
 import spritelib.Sprite;
 
@@ -10,11 +11,11 @@ public class UIComponent {
     private float y;
     private float z;
 
-    private PImage image;
     private Sprite sprite;
+    protected PApplet _applet;
 
-    public UIComponent(PImage image, float x, float y, float z){
-        this.image = image;
+    public UIComponent(PApplet applet, float x, float y, float z){
+        this._applet = applet;
         this.x = x;
         this.y = y;
         this.z = z;
@@ -23,12 +24,9 @@ public class UIComponent {
     public void buildComponent(){
     }
 
-    public PImage getImage() {
-        return this.image;
+    public void drawComponent(){
     }
 
-    public void registerEvent(Function func){
-    }
     public float getX() {
         return this.x;
     }

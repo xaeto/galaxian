@@ -2,6 +2,7 @@ package scenes;
 
 import models.GameObject;
 import models.UIComponent;
+import models.UILabel;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 public class Scene {
     private PImage _background;
     protected PApplet _applet;
-    private ArrayList<UIComponent> Components = new ArrayList<>();
-    private ArrayList<GameObject> GameObjects = new ArrayList<>();
+    private final ArrayList<UIComponent> Components = new ArrayList<>();
+    private final ArrayList<GameObject> GameObjects = new ArrayList<>();
 
     public Scene(PApplet applet, PImage background){
         this._background = background;
@@ -26,15 +27,21 @@ public class Scene {
         GameObjects.add(object);
     }
 
+    public void RegisterGameObjects(ArrayList<GameObject> objects){
+        GameObjects.addAll(objects);
+    }
+
     public void drawScene(){
         var applet = this._applet;
         applet.clear();
 
         for (UIComponent component : Components) {
-            applet.image(component.getImage(), component.getX(), component.getY());
+            component.drawComponent();
         }
 
         for (GameObject gameObject : GameObjects) {
+            if(gameObject == null)
+                continue;
             gameObject.draw(applet);
         }
     }
