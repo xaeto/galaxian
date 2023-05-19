@@ -1,5 +1,8 @@
 package models;
 
+import constants.TextureConstants;
+import helpers.TextureHelper;
+import org.w3c.dom.Text;
 import processing.core.PApplet;
 import spritelib.ANCHORTYPE;
 import spritelib.MultiSprite;
@@ -8,16 +11,16 @@ import spritelib.SingleSprite;
 
 public class Player extends GameObject {
     public Player(int x, int y) {
-        super(x, 550);
+        super(x, 550, 48, 48);
     }
 
     public void setup(PApplet applet){
-        sprite = new MultiSprite(15, 16, ANCHORTYPE.CENTER);
-        var img = applet.loadImage("./assets/sprites.png");
+        sprite = new MultiSprite(TextureConstants.PlayerWidth, TextureConstants.PlayerHeight, ANCHORTYPE.CENTER);
+        var img = TextureHelper.loadSpriteMap(applet);
         ((MultiSprite)sprite).addFrames(
                 applet,
                 img,
-                1, 70, 2
+                TextureConstants.OffsetX, TextureConstants.PlayerOffsetY, 2
         );
     }
 

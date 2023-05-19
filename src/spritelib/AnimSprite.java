@@ -19,7 +19,7 @@ public class AnimSprite extends MultiSprite
      * @param height    the height
      * @param framerate the framerate
      */
-    public AnimSprite( int width, int height, int framerate )
+    public AnimSprite( int width, int height, int framerate)
     {
         super( width, height );
         this.framerate = framerate;

@@ -1,5 +1,6 @@
 package spritelib;
 
+import constants.TextureConstants;
 import processing.core.PApplet;
 import processing.core.PConstants;
 import processing.core.PImage;
@@ -165,7 +166,8 @@ public class MultiSprite extends Sprite
                     0, 0,
                     getSize().getWidth(), getSize().getHeight() );
             frames.add( img );   // add the image to the list of frames
-            gridOffsetX += getSize().getWidth();   // increase the x-pos for the next frame
+            // additionally add the XOffset caused by resizing the whole image
+            gridOffsetX += getSize().getWidth() + TextureConstants.OffsetX;   // increase the x-pos for the next frame
         }
     }
 

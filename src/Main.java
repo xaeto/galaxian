@@ -37,8 +37,6 @@ public class Main extends PApplet {
     public void setup() {
         _menu = new MainMenu(this, width, height);
         GameState.CurrentScene = _menu;
-        frameRate(24);
-        smooth();
         _gameScene = new GameScene(this, width, height);
         GameState.Player = _gameScene.InitializePlayer();
         _gameScene.RegisterGameObject(GameState.Player);
