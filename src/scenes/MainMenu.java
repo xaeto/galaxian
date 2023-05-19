@@ -1,7 +1,6 @@
 package scenes;
 
-import models.UIComponent;
-import models.UILabel;
+import models.*;
 import processing.core.PApplet;
 import scenes.Scene;
 
@@ -13,16 +12,29 @@ public class MainMenu extends Scene {
 
     @Override
     public void buildScene(){
-        // Logo
-        var test = new UILabel(
+        // list_menu
+        var list_menu_selector = new UIListMenuSelector(this._applet, 0, 0, 0);
+        list_menu_selector.buildComponent();
+        var list_menu = new UIListMenu(_applet, list_menu_selector, 0, 0, 0);
+        var player_one = new UIListElement(
                 _applet,
+                0,
                 (float) _applet.width /2 ,
                 (float) _applet.height / 2,
                 0
         );
-        test.setText("test");
-        RegisterComponent(
-                test
+        RegisterComponent(player_one);
+        list_menu.addUIListElement(player_one);
+        var player_two = new UIListElement(
+                _applet,
+                1,
+                (float) _applet.width /2 ,
+                (float) _applet.height / 2 - 16,
+                0
         );
+        RegisterComponent(player_two);
+        list_menu.addUIListElement(player_two);
+        list_menu.buildComponent();
+        RegisterComponent(list_menu);
     }
 }

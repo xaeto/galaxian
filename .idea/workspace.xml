@@ -5,20 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="wip">
-      <change afterPath="$PROJECT_DIR$/src/constants/TextureConstants.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/helpers/TextureHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/PurpleShip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/RedShip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Ship.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/UILabelColor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/UILabelSymbol.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/UIListElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/UIListMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/UIListMenuSelector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/models/YellowShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites_normal_x2.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sprites_normal_x2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/GreenShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GreenShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/TextureConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/TextureConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/PurpleShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/PurpleShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/UIComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/UIComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/UILabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/UILabel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/AnimSprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/AnimSprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/MultiSprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/MultiSprite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,24 +49,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "F:/FH-Kiel Repository/galaxian",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "settings.editor.selected.configurable": "reference.settings.ide.settings.new.ui",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/FH-Kiel Repository/galaxian&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets" />
@@ -75,6 +77,20 @@
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="models" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="galaxian" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">

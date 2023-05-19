@@ -13,14 +13,14 @@ public class PurpleShip extends Ship {
 
     @Override
     public void setup(PApplet applet){
-        sprite = new MultiSprite(TextureConstants.RedEnemyWidth, TextureConstants.RedEnemyHeight, ANCHORTYPE.CENTER);
+        sprite = new MultiSprite(TextureConstants.PurpleEnemyWidth, TextureConstants.PurpleEnemyHeight, ANCHORTYPE.CENTER);
         var img = TextureHelper.loadSpriteMap(applet);
         var mSprite = ((MultiSprite)sprite);
         mSprite.addFrames(
                 applet,
                 img,
-                TextureConstants.RedEnemyOffsetX, TextureConstants.RedEnemyOffsetY, 2
+                TextureConstants.PurpleEnemyOffsetX, TextureConstants.PurpleEnemyOffsetY, 2
         );
-        this.combatSprites = new MultiSprite(TextureConstants.RedEnemyWidth, TextureConstants.RedEnemyHeight, ANCHORTYPE.CENTER);
+        this.combatSprites = new MultiSprite(TextureConstants.PurpleEnemyWidth, TextureConstants.PurpleEnemyHeight, ANCHORTYPE.CENTER);
     }
 }

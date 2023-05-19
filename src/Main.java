@@ -14,9 +14,8 @@ public class Main extends PApplet {
     @Override
     public void draw() {
         // draw currentScene, saved in GameState
-        // GameState.CurrentScene.drawScene();
-        _gameScene.drawScene();
-        scale(2);
+        GameState.CurrentScene.drawScene();
+        // _gameScene.drawScene();
     }
 
     @Override
