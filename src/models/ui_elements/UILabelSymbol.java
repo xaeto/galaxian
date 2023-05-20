@@ -1,4 +1,4 @@
-package models;
+package models.ui_elements;
 
 import processing.core.PApplet;
 import spritelib.Point;
@@ -14,7 +14,6 @@ public class UILabelSymbol {
     }
 
     public void draw(PApplet applet) {
-        System.out.println(_position.getX());
         _sprite.draw(applet, this._position);
     }
 }

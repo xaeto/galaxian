@@ -167,7 +167,7 @@ public class MultiSprite extends Sprite
                     getSize().getWidth(), getSize().getHeight() );
             frames.add( img );   // add the image to the list of frames
             // additionally add the XOffset caused by resizing the whole image
-            gridOffsetX += getSize().getWidth() + TextureConstants.OffsetX;   // increase the x-pos for the next frame
+            gridOffsetX += getSize().getWidth() + TextureConstants.GridGap;   // increase the x-pos for the next frame
         }
     }
 

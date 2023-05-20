@@ -2,14 +2,13 @@ package models;
 
 import constants.TextureConstants;
 import helpers.TextureHelper;
-import org.w3c.dom.Text;
 import processing.core.PApplet;
 import spritelib.ANCHORTYPE;
 import spritelib.MultiSprite;
 import spritelib.Point;
-import spritelib.SingleSprite;
 
 public class Player extends GameObject {
+    private String _playerName;
     public Player(int x, int y) {
         super(x, 550, 48, 48);
     }
@@ -20,7 +19,7 @@ public class Player extends GameObject {
         ((MultiSprite)sprite).addFrames(
                 applet,
                 img,
-                TextureConstants.OffsetX, TextureConstants.PlayerOffsetY, 2
+                TextureConstants.GridGap, TextureConstants.PlayerOffsetY, 2
         );
     }
 

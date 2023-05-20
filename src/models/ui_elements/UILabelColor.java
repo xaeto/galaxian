@@ -1,4 +1,4 @@
-package models;
+package models.ui_elements;
 
 public enum UILabelColor {
     Red,

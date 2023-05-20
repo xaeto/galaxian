@@ -1,5 +1,4 @@
 import scenes.MainMenu;
-import models.Player;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 import scenes.GameScene;
@@ -15,20 +14,45 @@ public class Main extends PApplet {
     public void draw() {
         // draw currentScene, saved in GameState
         GameState.CurrentScene.drawScene();
-        // _gameScene.drawScene();
     }
 
     @Override
     public void keyPressed(KeyEvent event){
         int keyCode = event.getKeyCode();
 
-        // move right
-        if(keyCode == 39){
-            GameState.Player.moveRight();
+        System.out.println(keyCode);
+        if(GameState.CurrentScene instanceof MainMenu) {
+            var scene = (MainMenu)GameState.CurrentScene;
+            // move right
+            if(keyCode == 525 || keyCode == 83){
+                scene.increasePlayerCount();
+            }
+            if(keyCode == 47 || keyCode == 87){
+                scene.decreasePlayerCount();
+            }
+            if(keyCode == 10){
+                int players = scene.initializeGame();
+                if (players == 1) {
+                    GameState.PlayerOne = GameScene.InitializePlayer(this);
+                } else  if(players == 2){
+                    GameState.PlayerOne = GameScene.InitializePlayer(this);
+                    GameState.PlayerTwo = GameScene.InitializePlayerTwo(this);
+                }
+                GameScene game_scene = new GameScene(this, width, height);
+                game_scene.addPlayers(GameState.PlayerOne, GameState.PlayerTwo);
+                game_scene.buildScene();
+                GameState.CurrentScene = game_scene;
+            }
         }
-        // move left
-        if(keyCode == 37){
-            GameState.Player.moveLeft();
+
+        if(GameState.CurrentScene instanceof GameScene) {
+            // move right
+            if(keyCode == 68){
+                GameState.PlayerOne.moveRight();
+            }
+            if(keyCode == 65){
+                GameState.PlayerOne.moveLeft();
+            }
         }
     }
 
@@ -36,9 +60,6 @@ public class Main extends PApplet {
     public void setup() {
         _menu = new MainMenu(this, width, height);
         GameState.CurrentScene = _menu;
-        _gameScene = new GameScene(this, width, height);
-        GameState.Player = _gameScene.InitializePlayer();
-        _gameScene.RegisterGameObject(GameState.Player);
     }
 
     @Override

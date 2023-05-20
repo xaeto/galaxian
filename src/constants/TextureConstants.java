@@ -4,7 +4,7 @@ public class TextureConstants {
     public static final int PlayerWidth = 32;
     public static final int PlayerHeight = 32;
     public static final int PlayerOffsetY = 140;
-    public static final int OffsetX = 2;
+    public static final int GridGap = 2;
 
     public static final int GreenEnemyWidth = 32;
     public static final int GreenEnemyHeight = 16;
@@ -37,6 +37,6 @@ public class TextureConstants {
     public static final int GreenTextOffsetY = 312;
     public static final int GreenTextOffsetNextY = 330;
 
-    public static final int SelectorOffsetY = 394;
-    public static final int SelectorOffsetX = 140;
+    public static final int SelectorOffsetY = 140;
+    public static final int SelectorOffsetX = 394;
 }

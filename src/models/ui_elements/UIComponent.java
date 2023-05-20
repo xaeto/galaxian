@@ -1,4 +1,4 @@
-package models;
+package models.ui_elements;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -11,7 +11,7 @@ public class UIComponent {
     private float x;
     private float y;
     private float z;
-    private Sprite sprite;
+    protected Sprite sprite;
     protected PApplet _applet;
 
     public UIComponent(PApplet applet, float x, float y, float z){

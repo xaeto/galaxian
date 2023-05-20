@@ -1,7 +1,7 @@
-package models;
+package models.ui_elements;
 
+import models.ui_elements.UIComponent;
 import processing.core.PApplet;
-import processing.core.PImage;
 
 public class UIButton extends UIComponent {
     public UIButton(PApplet applet, float x, float y, float z) {

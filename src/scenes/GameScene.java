@@ -1,27 +1,37 @@
 package scenes;
 
 import models.*;
+import models.ui_elements.UILabel;
+import models.ui_elements.UILabelColor;
 import processing.core.PApplet;
 
 import java.util.ArrayList;
 
 public class GameScene extends Scene {
-    private Player _player;
     public GameScene(PApplet applet, int width, int height) {
         super(applet, applet.createImage(width, height, 0));
         this.buildScene();
     }
 
-    public Player InitializePlayer(){
-        _player = new Player(_applet.width / 2 - 12, 24);
-        _player.setup(_applet);
-        return _player;
+    public static Player InitializePlayer(PApplet applet){
+        var player = new Player( 24, 24);
+        player.setup(applet);
+        return player;
     }
 
-    @Override
-    public void buildScene(){
-        RegisterGameObject(_player);
+    public static Player InitializePlayerTwo(PApplet applet){
+        var player = new Player(100, 100);
+        player.setup(applet);
+        return player;
+    }
 
+    public void addPlayers(Player ... players){
+        for(Player player: players) {
+            RegisterGameObject(player);
+        }
+    }
+
+    public void buildScene(){
         // Logo
         var test = new UILabel(
                 _applet,
@@ -29,7 +39,7 @@ public class GameScene extends Scene {
                 (float) _applet.height / 2,
                 0
         );
-        test.setText("ABC123", UILabelColor.White, 2);
+        test.setText("TEST", UILabelColor.Red, 2);
         RegisterComponent(
                 test
         );

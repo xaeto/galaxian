@@ -1,8 +1,7 @@
 package scenes;
 
 import models.GameObject;
-import models.UIComponent;
-import models.UILabel;
+import models.ui_elements.UIComponent;
 import processing.core.PApplet;
 import processing.core.PImage;
 

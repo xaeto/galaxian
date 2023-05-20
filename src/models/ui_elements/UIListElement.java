@@ -1,5 +1,6 @@
-package models;
+package models.ui_elements;
 
+import models.ui_elements.UILabel;
 import processing.core.PApplet;
 
 public class UIListElement extends UILabel {

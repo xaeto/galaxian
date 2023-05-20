@@ -1,4 +1,4 @@
-package models;
+package models.ui_elements;
 
 import constants.TextureConstants;
 import helpers.TextureHelper;
@@ -17,6 +17,10 @@ public class UILabel extends UIComponent {
         super(applet, x, y, z);
     }
 
+    public String getText(){
+        return this._text;
+    }
+
     @Override
     public void drawComponent(){
         for(var symbol: this.symbols) {
@@ -29,8 +33,9 @@ public class UILabel extends UIComponent {
         this.symbols.clear();
 
         var sprites = TextureHelper.loadSpriteMap(this._applet);
-        int offset_y;
-        int offset_next_y;
+        int offset_y = 0;
+        int offset_next_y = 0;
+
         switch (this._color) {
             case Red -> {
                 offset_y = TextureConstants.RedTextOffsetY;
@@ -44,28 +49,41 @@ public class UILabel extends UIComponent {
                 offset_y = TextureConstants.WhiteTextOffsetY;
                 offset_next_y = TextureConstants.WhiteTextOffsetNextY;
             }
-            default -> {
-                offset_y = TextureConstants.WhiteTextOffsetY;
-                offset_next_y = TextureConstants.WhiteTextOffsetNextY;
-            }
         }
 
         for(int i = 0; i < this._text.length(); ++i) {
             char current_char = this._text.charAt(i);
             int index_offset_factor = 0;
 
-            int c = this._text.charAt(i);
-            if(Character.isDigit(current_char)){
-                index_offset_factor = current_char - 48;
-            } else if(Character.isAlphabetic(current_char)) {
-                index_offset_factor = current_char - 65 + 10;
-            }
+            int character_offset_y = 0;
 
             MultiSprite sprite = new MultiSprite(TextureConstants.TextWidth, TextureConstants.TextHeight, ANCHORTYPE.TOP_LEFT);
-            int next_x = (TextureConstants.TextWidth + TextureConstants.OffsetX)*index_offset_factor;
+            boolean is_whitespace = Character.isSpaceChar(current_char);
+            if(is_whitespace) {
+                character_offset_y = offset_next_y - TextureConstants.GridGap;
+                index_offset_factor = 17;
+            } else if(Character.isDigit(current_char)){
+                index_offset_factor = current_char - 48;
+                character_offset_y = offset_y;
+            } else if(Character.isAlphabetic(current_char)) {
+                index_offset_factor = current_char - 65 + 10;
+                if(index_offset_factor > 18) {
+                    character_offset_y = offset_next_y - TextureConstants.GridGap;
+                    index_offset_factor -= 19;
+                } else {
+                    character_offset_y = offset_y;
+                }
+            }
+
+            int next_x = (TextureConstants.TextWidth + TextureConstants.GridGap)*index_offset_factor;
             if(i >= 0)
-                next_x += TextureConstants.OffsetX;
-            sprite.addFrames(_applet, sprites, next_x, offset_y, 1);
+                next_x += TextureConstants.GridGap;
+
+            if(is_whitespace) {
+                sprite.addFrames(_applet, sprites, 412, 140, 1);
+            } else {
+                sprite.addFrames(_applet, sprites, next_x, character_offset_y, 1);
+            }
 
             var point = new Point(
                     (int)this.getX() + (i*TextureConstants.TextWidth) + this._padding*i,
@@ -81,7 +99,7 @@ public class UILabel extends UIComponent {
 
     public void setText(String text, UILabelColor color, int padding) {
         this._color = color;
-        this._text = text;
+        this._text = text.toUpperCase();
         this._padding = padding;
         this.buildComponent();
     }

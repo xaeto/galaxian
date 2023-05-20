@@ -19,7 +19,7 @@ public class YellowShip extends Ship {
         mSprite.addFrames(
                 applet,
                 img,
-                TextureConstants.OffsetX, TextureConstants.YellowEnemyOffsetY, 7     );
+                TextureConstants.GridGap, TextureConstants.YellowEnemyOffsetY, 7     );
     }
     @Override
     public void draw(PApplet applet){
