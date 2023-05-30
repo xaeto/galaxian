@@ -17,22 +17,26 @@ public class Rectangle
         this.size = size;
     }
 
-    public int top()
+    public void setPos(Point point) {
+        this.topleft = point;
+    }
+
+    public float top()
     {
         return topleft.getY();
     }
 
-    public int bottom()
+    public float bottom()
     {
         return topleft.getY() + size.getHeight();
     }
 
-    public int left()
+    public float left()
     {
         return topleft.getX();
     }
 
-    public int right()
+    public float right()
     {
         return topleft.getX() + size.getWidth();
     }

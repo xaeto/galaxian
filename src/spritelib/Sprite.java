@@ -44,10 +44,10 @@ public abstract class Sprite
      * @param origY the orig y
      * @return the plot rect
      */
-    public Rectangle getPlotRect( int origX, int origY )
+    public Rectangle getPlotRect( float origX, float origY )
     {
-        int x = 0;
-        int y = 0;
+        float x = 0;
+        float y = 0;
         switch ( getAnchor() )
         {
             case TOP_LEFT:

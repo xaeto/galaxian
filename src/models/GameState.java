@@ -1,3 +1,5 @@
+package models;
+
 import scenes.Scene;
 import models.Player;
 

@@ -18,6 +18,10 @@ public class Scene {
         this._applet = applet;
     }
 
+    public ArrayList<GameObject> getGameObjects(){
+        return this.GameObjects;
+    }
+
     public void RegisterComponent(UIComponent component){
         Components.add(component);
     }
@@ -41,7 +45,9 @@ public class Scene {
         for (GameObject gameObject : GameObjects) {
             if(gameObject == null)
                 continue;
-            gameObject.draw(applet);
+            if(gameObject.isVisible()){
+                gameObject.draw(applet);
+            }
         }
     }
 

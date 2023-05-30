@@ -1,33 +1,50 @@
+import models.GameState;
 import scenes.MainMenu;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 import scenes.GameScene;
 
 public class Main extends PApplet {
-    private MainMenu _menu;
     private GameScene _gameScene;
+    private int[] activeKeys = new int[256];
     public static void main(String[] args) {
         PApplet.main(Main.class);
     }
 
     @Override
     public void draw() {
-        // draw currentScene, saved in GameState
+
+        boolean right_pressed = activeKeys[68]  == 1;
+        boolean left_pressed = activeKeys[65]  == 1;
+        boolean space_pressed = activeKeys[32]  == 1;
+        if(GameState.CurrentScene instanceof GameScene) {
+            // move right
+            if(right_pressed){
+                GameState.PlayerOne.moveRight();
+            }
+            if(left_pressed){
+                GameState.PlayerOne.moveLeft();
+            }
+            if(space_pressed){
+                GameState.PlayerOne.shoot(this);
+            }
+        }
         GameState.CurrentScene.drawScene();
     }
 
     @Override
     public void keyPressed(KeyEvent event){
         int keyCode = event.getKeyCode();
+        if (keyCode > 255) {
+            return;
+        }
 
-        System.out.println(keyCode);
-        if(GameState.CurrentScene instanceof MainMenu) {
-            var scene = (MainMenu)GameState.CurrentScene;
+        if(GameState.CurrentScene instanceof MainMenu scene) {
             // move right
-            if(keyCode == 525 || keyCode == 83){
+            if(keyCode == 87){
                 scene.increasePlayerCount();
             }
-            if(keyCode == 47 || keyCode == 87){
+            if(keyCode == 83){
                 scene.decreasePlayerCount();
             }
             if(keyCode == 10){
@@ -43,22 +60,30 @@ public class Main extends PApplet {
                 game_scene.buildScene();
                 GameState.CurrentScene = game_scene;
             }
+            return;
         }
+        if(keyCode == 32) {
+            if(GameState.CurrentScene instanceof GameScene scene) {
+                GameState.PlayerOne.shoot(this);
+            }
+            return;
+        }
+        activeKeys[keyCode] = 1;
+    }
 
-        if(GameState.CurrentScene instanceof GameScene) {
-            // move right
-            if(keyCode == 68){
-                GameState.PlayerOne.moveRight();
-            }
-            if(keyCode == 65){
-                GameState.PlayerOne.moveLeft();
-            }
+    @Override
+    public void keyReleased(KeyEvent event){
+        int keyCode = event.getKeyCode();
+        if (keyCode > 255) {
+            return;
         }
+        activeKeys[keyCode] = 0;
     }
 
     @Override
     public void setup() {
-        _menu = new MainMenu(this, width, height);
+        frameRate(60);
+        MainMenu _menu = new MainMenu(this, width, height);
         GameState.CurrentScene = _menu;
     }
 

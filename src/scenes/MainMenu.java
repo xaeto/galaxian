@@ -57,13 +57,13 @@ public class MainMenu extends Scene {
         RegisterComponent(_listMenu);
     }
     private void buildHighScore(){
-        String highscore_label = "HI-SCORE";
+        String highscore_label = "HIGH SCORE";
         UILabel label = new UILabel(
                 this._applet,
                 _applet.width/2 - highscore_label.length()*TextureConstants.TextHeight/2,
                 TextureConstants.TextHeight*2,0
         );
-        label.setText("HI SCORE", UILabelColor.Red, 1);
+        label.setText(highscore_label, UILabelColor.Red, 1);
 
         int current_score = 500;
         int score_length = (int)String.valueOf(current_score).chars().count();
@@ -71,8 +71,8 @@ public class MainMenu extends Scene {
         UILabel score = new UILabel(
                 this._applet,
                 _applet.width/2 - score_length*TextureConstants.TextHeight/2,
-                label.getY() + TextureConstants.TextHeight +
-                        TextureConstants.GridGap,0
+                label.getY() + TextureConstants.TextHeight + 2*TextureConstants.GridGap,
+                0
         );
         score.setText(String.valueOf(current_score), UILabelColor.Green, 1);
         RegisterComponent(score);
