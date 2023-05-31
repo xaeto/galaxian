@@ -19,9 +19,6 @@ public class GameScene extends Scene {
         this.buildScene();
     }
 
-    public void addProjectile(Projectile projectile){
-        this.getGameObjects().add(projectile);
-    }
     public static Player InitializePlayer(PApplet applet){
         var player = new Player( 24, 24);
         player.setup(applet);
@@ -44,7 +41,11 @@ public class GameScene extends Scene {
     public void drawScene(){
         _boundsLogic.handleConstraints(this.getGameObjects());
         detectCollision();
+        drawStars();
         super.drawScene();
+    }
+
+    public void drawStars(){
     }
 
     public void buildEnemies(){
@@ -123,8 +124,8 @@ public class GameScene extends Scene {
                 if(enemy instanceof Enemy e){
                     if(projectile.intersect(e)){
                         projectile.toggleVisibility();
+                        enemy.takeDamage(10);
                         e.die();
-                        e.toggleVisibility();
                         System.out.println("Collision detected");
                     }
                 }

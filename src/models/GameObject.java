@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameObject {
+    protected int Health = 100;
+    protected int Damage = 10;
 
     protected float x;
     protected float y;
@@ -115,5 +117,11 @@ public class GameObject {
 
     public void updateBehaviour(){
         _behaviour.update(this);
+    }
+    public void takeDamage(int damage){
+        this.Health -= damage;
+    }
+    public int getHealth(){
+        return this.Health;
     }
 }

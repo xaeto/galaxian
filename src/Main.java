@@ -13,7 +13,6 @@ public class Main extends PApplet {
 
     @Override
     public void draw() {
-
         boolean right_pressed = activeKeys[68]  == 1;
         boolean left_pressed = activeKeys[65]  == 1;
         boolean space_pressed = activeKeys[32]  == 1;
@@ -82,7 +81,7 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
-        frameRate(60);
+        frameRate(30);
         MainMenu _menu = new MainMenu(this, width, height);
         GameState.CurrentScene = _menu;
     }

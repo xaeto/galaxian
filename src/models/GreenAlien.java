@@ -14,9 +14,12 @@ public class GreenAlien extends Alien {
     public void setup(PApplet applet){
         var seqSprite = new SequencedSprite(TextureConstants.GreenEnemyWidth, TextureConstants.GreenEnemyHeight, 2, ANCHORTYPE.CENTER);
         var img = TextureHelper.loadSpriteMap(applet);
+        // add default frames
         seqSprite.addFrames(applet, img, TextureConstants.GreenEnemyOffsetX, TextureConstants.GreenEnemyOffsetY, 2);
+        // add explosion frames
+        seqSprite.addFrames(applet, img, TextureConstants.GridGap, TextureConstants.ExplosionOffsetY, 4);
         var dieSequence = new Sequence("die");
-        dieSequence.addRange(0, 1);
+        dieSequence.addRange(2, 5);
         seqSprite.addSequence(
                 dieSequence
         );

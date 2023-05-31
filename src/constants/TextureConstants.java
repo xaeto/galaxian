@@ -39,4 +39,8 @@ public class TextureConstants {
 
     public static final int SelectorOffsetY = 140;
     public static final int SelectorOffsetX = 394;
+
+    public static final int ExplosionWidth = 64;
+    public static final int ExplosionHeight = 64;
+    public static final int ExplosionOffsetY = 174;
 }

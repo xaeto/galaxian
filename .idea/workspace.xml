@@ -5,28 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="wip">
-      <change afterPath="$PROJECT_DIR$/src/logic/BoundsLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Alien.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/GameObjectBehaviour.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/Projectile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/ProjectileSource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/TextureConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/TextureConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Alien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/GreenShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GreenAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/PurpleShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/PurpleAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/RedShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/RedAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/YellowShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/YellowShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/GreenAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GreenAlien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/Sprite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,13 +50,13 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/FH-Kiel Repository/galaxian&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jo/fh-projects/galaxian&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -89,7 +75,7 @@
       <recent name="models" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="galaxian" />
@@ -97,6 +83,56 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="/home/jo/fh-projects/galaxian" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <ForceTestExec>false</ForceTestExec>
+      <method v="2" />
+    </configuration>
+    <configuration name="Galaxian" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="package" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Gradle./home/jo/fh-projects/galaxian" />
+      <item itemvalue="Maven.Galaxian" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />

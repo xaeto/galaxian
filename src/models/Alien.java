@@ -7,7 +7,6 @@ import spritelib.Point;
 import java.util.OptionalLong;
 
 public class Alien extends Enemy {
-    protected OptionalLong previousTimestamp = OptionalLong.empty();
     public Alien(float x, float y, int width, int height) {
         super(x, y, width, height);
     }

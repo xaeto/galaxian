@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Enemy extends GameObject {
-    protected int Health = 0;
-    protected int Damage = 0;
 
     public Enemy(float x, float y, int width, int height) {
         super(x, y, width, height);
