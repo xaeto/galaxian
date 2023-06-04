@@ -11,9 +11,10 @@ public class YellowShip extends Ship {
     }
 
     public void setup(PApplet applet){
-        var seqSprite = new SequencedSprite(TextureConstants.GreenEnemyWidth, TextureConstants.GreenEnemyHeight, 2, ANCHORTYPE.CENTER);
+        var seqSprite = new SequencedSprite(TextureConstants.YellowEnemyWidth, TextureConstants.YellowEnemyHeight, 2, ANCHORTYPE.TOP_LEFT);
         var img = TextureHelper.loadSpriteMap(applet);
-        seqSprite.addFrames(applet, img, TextureConstants.GreenEnemyOffsetX, TextureConstants.GreenEnemyOffsetY, 2);
+        seqSprite.addFrames(applet, img, TextureConstants.GridGap, TextureConstants.YellowEnemyOffsetY, 2);
+
         var dieSequence = new Sequence("die");
         dieSequence.addRange(0, 1);
         seqSprite.addSequence(

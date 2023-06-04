@@ -14,15 +14,11 @@ public class Enemy extends GameObject {
         super(x, y, width, height);
     }
 
-    public boolean isAlive(){
-        return Health > 0;
-    }
-
     @Override
     public void shoot(PApplet applet){
         float dx = (this.x + 3);
         float dy =  (this.y+7.0f/2);
-        var projectile = new Projectile(dx, dy, 1, ProjectileSource.Enemy);
+        var projectile = new Projectile(dx, dy, 10, ProjectileSource.Enemy);
         this.projectiles.add(projectile);
     }
 

@@ -33,14 +33,11 @@ public class Projectile extends GameObject {
 
     @Override
     public void setup(PApplet applet){
-        var multiSprite = new MultiSprite(3, 7, ANCHORTYPE.CENTER);
+        var multiSprite = new MultiSprite(3, 7, ANCHORTYPE.TOP_LEFT);
         multiSprite.addFrames(applet, TextureHelper.loadSpriteMap(applet), 132, 392, 1);
         multiSprite.draw(applet, new Point(this.getX(), this.getY() - this.getHeight() - 2));
 
         sprite = multiSprite;
-        float x = 500.0f*(float)Math.cos(this._direction);
-        float y = 500.0f*(float)Math.sin(this._direction);
-        this.destination.add(x, y);
     }
 
     @Override
@@ -49,6 +46,10 @@ public class Projectile extends GameObject {
     }
 
     public void updateProjectile(){
-        this.y -= 5;
+        this.y -= 10*Math.sin(this._direction);
+        this.x += 10*Math.cos(this._direction);
+        if(this.y < 0){
+            this.toggleVisibility();
+        }
     }
 }

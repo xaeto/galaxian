@@ -1,6 +1,7 @@
 package scenes;
 
 import models.GameObject;
+import models.Star;
 import models.ui_elements.UIComponent;
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -42,15 +43,30 @@ public class Scene {
             component.drawComponent();
         }
 
+        ArrayList<GameObject> objectsToDelete = new ArrayList<>();
         for (GameObject gameObject : GameObjects) {
             if(gameObject == null)
                 continue;
+            if(!gameObject.isAlive()){
+                objectsToDelete.add(gameObject);
+            }
+            if(gameObject instanceof Star star){
+                star.update(applet);
+            }
             if(gameObject.isVisible()){
                 gameObject.draw(applet);
             }
         }
+        GameObjects.removeAll(objectsToDelete);
     }
 
     public void buildScene(){
+        for(int i = 0; i < 32; ++i){
+            float x = _applet.random(_applet.width);
+            float y = _applet.random(_applet.height);
+            var star = new Star(x, y, 1, 2);
+            star.setup(this._applet);
+            RegisterGameObject(star);
+        }
     }
 }

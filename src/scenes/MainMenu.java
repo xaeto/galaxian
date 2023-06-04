@@ -1,6 +1,7 @@
 package scenes;
 
 import constants.TextureConstants;
+import models.GameState;
 import models.ui_elements.*;
 import processing.core.PApplet;
 
@@ -65,7 +66,7 @@ public class MainMenu extends Scene {
         );
         label.setText(highscore_label, UILabelColor.Red, 1);
 
-        int current_score = 500;
+        int current_score = GameState.Highscore;
         int score_length = (int)String.valueOf(current_score).chars().count();
         System.out.println(score_length);
         UILabel score = new UILabel(
@@ -83,5 +84,6 @@ public class MainMenu extends Scene {
     public void buildScene(){
         buildPlayerSelection();
         buildHighScore();
+        super.buildScene();
     }
 }

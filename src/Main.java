@@ -16,8 +16,8 @@ public class Main extends PApplet {
         boolean right_pressed = activeKeys[68]  == 1;
         boolean left_pressed = activeKeys[65]  == 1;
         boolean space_pressed = activeKeys[32]  == 1;
-        if(GameState.CurrentScene instanceof GameScene) {
-            // move right
+
+        if(GameState.CurrentScene instanceof GameScene scene) {
             if(right_pressed){
                 GameState.PlayerOne.moveRight();
             }
@@ -37,7 +37,6 @@ public class Main extends PApplet {
         if (keyCode > 255) {
             return;
         }
-
         if(GameState.CurrentScene instanceof MainMenu scene) {
             // move right
             if(keyCode == 87){
@@ -63,9 +62,13 @@ public class Main extends PApplet {
         }
         if(keyCode == 32) {
             if(GameState.CurrentScene instanceof GameScene scene) {
+
                 GameState.PlayerOne.shoot(this);
             }
             return;
+        }
+        if(keyCode == 10) {
+            GameState.Paused = !GameState.Paused;
         }
         activeKeys[keyCode] = 1;
     }
@@ -81,7 +84,6 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
-        frameRate(30);
         MainMenu _menu = new MainMenu(this, width, height);
         GameState.CurrentScene = _menu;
     }

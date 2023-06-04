@@ -30,7 +30,9 @@ public class GameObject {
         this.height = height;
         this._direction = Math.PI/2; // 90°
     }
-
+    public boolean isAlive(){
+        return Health > 0;
+    }
     public boolean isVisible(){
         return this.sprite.isVisible();
     }
@@ -48,29 +50,24 @@ public class GameObject {
     }
 
     public boolean intersect(GameObject other){
-        var rect = other.getBounds();
-        var this_rect = this.getBounds();
-        if (this.x < other.x + other.width &&
-                this.x + this.width > other.x &&
-                this.y < other.y + other.height &&
-                this.y + this.height > other.y) {
-            return true;
-        } else {
-            return false;
-        }
+        boolean checkX = this.x < other.getX()+other.width && this.x+this.width>other.getX();
+        boolean checkY = this.y < other.getY()+other.height && this.getY()+this.height>other.getY();
+
+        return checkX && checkY;
     }
 
     public void draw(PApplet applet){
-        applet.stroke(126);
-       // float x1, float y1, float x2, float y2
-        float x1 = this.x;
-        float y1 = this.y;
-        float x2 = this.x + (float)(50*Math.cos(this._direction));
-        float y2 = this.y - (float)(50*Math.sin(this._direction));
+        // float this.x, float this.y, float other.getX(), float other.getY()
+        // float this.x = this.x;
+        // float this.y = this.y;
+        // float other.getX() = this.x + (float)(50*Math.cos(this._direction));
+        // float other.getY() = this.y - (float)(50*Math.sin(this._direction));
 
-        // applet.line(this.x, this.y, x2, y2);
+        // applet.line(this.x, this.y, other.getX(), other.getY());
 
         for (var projectile : this.projectiles){
+            if(!projectile.isVisible())
+                continue;
             projectile.draw(applet);
             projectile.updateProjectile();
         }

@@ -24,8 +24,12 @@ public class UIComponent {
     public void buildComponent(){
     }
 
+    public void updateComponent(){
+
+    }
+
     public void drawComponent(){
-        System.out.println("test");
+        System.out.println("drawing default component");
     }
 
     public int getHeight(){
