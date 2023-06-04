@@ -15,8 +15,8 @@ public class Star extends GameObject {
 
     @Override
     public void draw(PApplet applet){
-        applet.fill(r, g, b, this.y%168);
-        applet.circle(this.x, this.y, 5.0f);
+        applet.fill(r, g, b, this.y%187 + 50);
+        applet.circle(this.x, this.y, applet.random(2.5f,6.5f));
     }
 
     public void update(PApplet applet){

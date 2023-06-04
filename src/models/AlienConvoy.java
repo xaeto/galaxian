@@ -18,7 +18,7 @@ public class AlienConvoy {
         GameObject leftObj = Ships.stream().min(Comparator.comparing(GameObject::getX)).get();
         GameObject rightObj = Ships.stream().max(Comparator.comparing(GameObject::getX)).get();
 
-        if(rightObj.getX() == 766.0 - rightObj.width){
+        if(rightObj.getX() == 768.0 - rightObj.width){
             this.direction = Direction.LEFT;
         }
 
@@ -30,9 +30,9 @@ public class AlienConvoy {
     public void moveConvoy(){
         for(GameObject ship: Ships){
             if(this.direction == Direction.LEFT){
-                ship.x -= 1;
+                ship.x -= 2;
             } else {
-                ship.x += 1;
+                ship.x += 2;
             }
         }
     }
