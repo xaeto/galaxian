@@ -44,6 +44,8 @@ public class GameScene extends Scene {
         _boundsLogic.handleConstraints(this.getGameObjects());
         _convoy.updateDirection();
         _convoy.moveConvoy();
+        checkDeadEnemies();
+        buildHighScore();
         super.drawScene();
     }
 
@@ -51,9 +53,6 @@ public class GameScene extends Scene {
         for (GameObject obj: this.getGameObjects()){
             if(obj instanceof Enemy e && !e.isAlive()){
                 e.die();
-                System.out.println(GameState.Highscore);
-                GameState.Highscore += 10;
-                buildHighScore();
             }
         }
     }
@@ -86,9 +85,11 @@ public class GameScene extends Scene {
         label.setText(highscore_label, UILabelColor.Red, 1);
 
         int current_score = GameState.Highscore;
+        int score_length = (int)String.valueOf(current_score).chars().count();
+        System.out.println(score_length);
         UILabel score = new UILabel(
                 this._applet,
-                label.getX() + highscore_label.length()*8,
+                label.getX() - score_length*TextureConstants.TextHeight/2 + highscore_label.length()*8,
                 label.getY() + TextureConstants.TextHeight + 2*TextureConstants.GridGap,
                 0
         );
@@ -105,16 +106,11 @@ public class GameScene extends Scene {
     public void detectCollision(){
         var projectilesPlayerOne = GameState.PlayerOne.GetProjectiles();
         for (var projectile: projectilesPlayerOne) {
-            if(!projectile.isVisible())
-                continue;
             for (var enemy: this.getGameObjects()){
                 if(enemy instanceof Enemy e){
                     if(projectile.intersect(e)){
                         enemy.takeDamage(500);
                         projectile.toggleVisibility();
-                        if(!enemy.isAlive()){
-                            e.die();
-                        }
                     }
                 }
             }

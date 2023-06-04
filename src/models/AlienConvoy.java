@@ -27,6 +27,11 @@ public class AlienConvoy {
             this.direction = Direction.RIGHT;
         }
     }
+
+    public boolean isStageCleared(){
+        return this.Ships.size() == 0;
+    }
+
     public void moveConvoy(){
         for(GameObject ship: Ships){
             if(this.direction == Direction.LEFT){

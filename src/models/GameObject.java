@@ -10,6 +10,7 @@ import java.util.List;
 public class GameObject {
     protected int Health = 100;
     protected int Damage = 10;
+    protected int Points = 10;
 
     protected float x;
     protected float y;
@@ -57,20 +58,16 @@ public class GameObject {
     }
 
     public void draw(PApplet applet){
-        // float this.x, float this.y, float other.getX(), float other.getY()
-        // float this.x = this.x;
-        // float this.y = this.y;
-        // float other.getX() = this.x + (float)(50*Math.cos(this._direction));
-        // float other.getY() = this.y - (float)(50*Math.sin(this._direction));
-
-        // applet.line(this.x, this.y, other.getX(), other.getY());
-
+        var projectilesToDelete = new ArrayList<Projectile>();
         for (var projectile : this.projectiles){
-            if(!projectile.isVisible())
-                continue;
+            if(!projectile.isVisible()) {
+                projectilesToDelete.add(projectile);
+                GameState.Highscore += Points;
+            }
             projectile.draw(applet);
             projectile.updateProjectile();
         }
+        projectiles.removeAll(projectilesToDelete);
     }
 
     public void setup(PApplet applet){
