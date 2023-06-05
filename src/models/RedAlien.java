@@ -12,7 +12,7 @@ public class RedAlien extends Alien {
 
     @Override
     public void setup(PApplet applet){
-        var seqSprite = new SequencedSprite(TextureConstants.RedEnemyWidth, TextureConstants.RedEnemyHeight, 2, ANCHORTYPE.TOP_LEFT);
+        var seqSprite = new SequencedSprite(TextureConstants.RedEnemyWidth, TextureConstants.RedEnemyHeight, 30, ANCHORTYPE.TOP_LEFT);
         var img = TextureHelper.loadSpriteMap(applet);
         seqSprite.addFrames(applet, img, TextureConstants.RedEnemyOffsetX, TextureConstants.RedEnemyOffsetY, 2);
         var dieSequence = new Sequence("die");

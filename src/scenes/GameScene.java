@@ -86,7 +86,6 @@ public class GameScene extends Scene {
 
         int current_score = GameState.Highscore;
         int score_length = (int)String.valueOf(current_score).chars().count();
-        System.out.println(score_length);
         UILabel score = new UILabel(
                 this._applet,
                 label.getX() - score_length*TextureConstants.TextHeight/2 + highscore_label.length()*8,

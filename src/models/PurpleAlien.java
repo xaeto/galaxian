@@ -12,7 +12,7 @@ public class PurpleAlien extends Alien {
 
     @Override
     public void setup(PApplet applet){
-        var seqSprite = new SequencedSprite(TextureConstants.PurpleEnemyWidth, TextureConstants.PurpleEnemyHeight, 0, ANCHORTYPE.TOP_LEFT);
+        var seqSprite = new SequencedSprite(TextureConstants.PurpleEnemyWidth, TextureConstants.PurpleEnemyHeight, 5, ANCHORTYPE.TOP_LEFT);
         var img = TextureHelper.loadSpriteMap(applet);
         seqSprite.addFrames(applet, img, TextureConstants.PurpleEnemyOffsetX, TextureConstants.PurpleEnemyOffsetY, 2);
         var dieSequence = new Sequence("die");

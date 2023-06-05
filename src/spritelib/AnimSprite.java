@@ -10,7 +10,7 @@ import processing.core.PApplet;
 public class AnimSprite extends MultiSprite
 {
     private final int framerate;         // the framerate of the sprite: 1 = 1000 frames/sec, 100 = 10 frames/sec etc.
-    private int nextFrameAt = 0;   // stores the millis-value for the next frameflip
+    private float nextFrameAt = 0;   // stores the millis-value for the next frameflip
 
     /**
      * Instantiates a new Anim sprite. Calls the constr. of the baseclass
@@ -46,7 +46,7 @@ public class AnimSprite extends MultiSprite
         if ( nextFrameAt < applet.millis() )    // is the next frame due?
         {
             nextFrame();
-            nextFrameAt = applet.millis() + framerate;    // the next frame lies "framerate millis" in the future
+            nextFrameAt = applet.millis() + framerate*100;    // the next frame lies "framerate millis" in the future
         }
     }
 

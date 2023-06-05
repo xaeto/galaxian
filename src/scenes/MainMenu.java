@@ -32,7 +32,6 @@ public class MainMenu extends Scene {
         _listMenu_selector.buildComponent();
 
         String player_one_text = "1 Player";
-        System.out.println(player_one_text.length());
         var player_one = new UIListElement(
                 _applet,
                 0,
@@ -68,7 +67,6 @@ public class MainMenu extends Scene {
 
         int current_score = GameState.Highscore;
         int score_length = (int)String.valueOf(current_score).chars().count();
-        System.out.println(score_length);
         UILabel score = new UILabel(
                 this._applet,
                 _applet.width/2 - score_length*TextureConstants.TextHeight/2,
