@@ -1,12 +1,7 @@
 package models;
 
 import processing.core.PApplet;
-import spritelib.MultiSprite;
 import spritelib.SequencedSprite;
-import spritelib.Sprite;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Enemy extends GameObject {
 
@@ -22,9 +17,15 @@ public class Enemy extends GameObject {
         this.projectiles.add(projectile);
     }
 
+    @Override
+    public void draw(PApplet applet) {
+        super.draw(applet);
+    }
+
     public void die(){
         var seq = (SequencedSprite)this.sprite;
         seq.gotoSequence("die");
+        System.out.println(seq.getFrames());
     }
 
     public void setAttackPose(){

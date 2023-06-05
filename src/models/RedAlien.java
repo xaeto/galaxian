@@ -37,5 +37,6 @@ public class RedAlien extends Alien {
     public void draw(PApplet applet){
         var s = (SequencedSprite)sprite;
         s.draw(applet, new Point(this.getX(), this.getY()));
+        super.draw(applet);
     }
 }

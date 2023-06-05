@@ -40,5 +40,12 @@ public class GreenAlien extends Alien {
     public void draw(PApplet applet){
         var s = (SequencedSprite)sprite;
         s.draw(applet, new Point(this.getX(), this.getY()));
+        if(!this.isAlive()){
+            var seq = (SequencedSprite)this.sprite;
+            System.out.println(seq.getCurrentFrame());
+            if(seq.getCurrentFrame() == 1){
+                this.toggleVisibility();
+            }
+        }
     }
 }

@@ -6,14 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="wip">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Alien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Enemy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/GreenAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GreenAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/PurpleAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/PurpleAlien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/RedAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/RedAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/YellowShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/YellowShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/AnimSprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/AnimSprite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +149,7 @@
       <workItem from="1685807057192" duration="1551000" />
       <workItem from="1685880238061" duration="8150000" />
       <workItem from="1685899265299" duration="5642000" />
-      <workItem from="1685995894185" duration="1052000" />
+      <workItem from="1685995894185" duration="2095000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1682681721887</created>
