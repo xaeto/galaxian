@@ -21,7 +21,6 @@ public class Enemy extends GameObject {
     public void draw(PApplet applet) {
         super.draw(applet);
     }
-
     public void die(){
         var seq = (SequencedSprite)this.sprite;
         seq.gotoSequence("die");

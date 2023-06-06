@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="wip">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Alien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/GreenAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GreenAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/RedAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/RedAlien.java" afterDir="false" />
-    </list>
+    <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="wip" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +143,7 @@
       <workItem from="1685807057192" duration="1551000" />
       <workItem from="1685880238061" duration="8150000" />
       <workItem from="1685899265299" duration="5642000" />
-      <workItem from="1685995894185" duration="2095000" />
+      <workItem from="1685995894185" duration="2327000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1682681721887</created>
