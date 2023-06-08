@@ -11,6 +11,7 @@ public class UIComponent {
     private float x;
     private float y;
     private float z;
+
     protected Sprite sprite;
     protected PApplet _applet;
 

@@ -6,13 +6,11 @@ import models.*;
 import models.ui_elements.UILabel;
 import models.ui_elements.UILabelColor;
 import processing.core.PApplet;
-import spritelib.Rectangle;
-
-import java.util.ArrayList;
 
 public class GameScene extends Scene {
     private BoundsLogic _boundsLogic;
     private AlienConvoy _convoy = new AlienConvoy();
+    private UILabel scoreLabel;
 
     public GameScene(PApplet applet, int width, int height) {
         super(applet, applet.createImage(width, height, 0));
@@ -41,12 +39,20 @@ public class GameScene extends Scene {
     @Override
     public void drawScene(){
         detectCollision();
+
+        this.scoreLabel.setText(String.valueOf(GameState.Highscore), UILabelColor.Green, 1);
         _boundsLogic.handleConstraints(this.getGameObjects());
-        _convoy.updateDirection();
         _convoy.moveConvoy();
+        _convoy.updateDirection();
         checkDeadEnemies();
-        buildHighScore();
+        // redraw();
         super.drawScene();
+    }
+
+    private void redraw(){
+        for(var uiComp: this.getUiComponents()){
+            uiComp.drawComponent();
+        }
     }
 
     private void checkDeadEnemies(){
@@ -57,24 +63,18 @@ public class GameScene extends Scene {
         }
     }
 
-    public void drawPauseInfo(){
-        String pause_label = "PAUSED";
-        UILabel label = new UILabel(
-                this._applet,
-                this._applet.width/2,
-                this._applet.height/2,
-                0
-        );
-        label.setText(pause_label, UILabelColor.Red, 1);
-        RegisterComponent(label);
-    }
-
     public void buildEnemies(){
         _convoy.build(this._applet);
-        RegisterGameObjects(_convoy.GetShips());
+        this.RegisterGameObjects(_convoy.GetShips());
     }
 
-    private void buildHighScore(){
+    public void buildScene(){
+        buildEnemies();
+        buildHighscore();
+        super.buildScene();
+    }
+
+    public void buildHighscore(){
         String highscore_label = "HIGH SCORE";
         UILabel label = new UILabel(
                 this._applet,
@@ -83,28 +83,27 @@ public class GameScene extends Scene {
                 0
         );
         label.setText(highscore_label, UILabelColor.Red, 1);
+        RegisterComponent(label);
 
         int current_score = GameState.Highscore;
         int score_length = (int)String.valueOf(current_score).chars().count();
-        UILabel score = new UILabel(
+        this.scoreLabel = new UILabel(
                 this._applet,
-                label.getX() - score_length*TextureConstants.TextHeight/2 + highscore_label.length()*8,
+                label.getX() - score_length* TextureConstants.TextHeight/2 + highscore_label.length()*8,
                 label.getY() + TextureConstants.TextHeight + 2*TextureConstants.GridGap,
                 0
         );
-        score.setText(String.valueOf(current_score), UILabelColor.Green, 1);
-        RegisterComponent(score);
+
+        this.scoreLabel.setText(String.valueOf(current_score), UILabelColor.Green, 1);
+        RegisterComponent(this.scoreLabel);
         RegisterComponent(label);
-    }
-    public void buildScene(){
-        buildEnemies();
-        buildHighScore();
-        super.buildScene();
     }
 
     public void detectCollision(){
         var projectilesPlayerOne = GameState.PlayerOne.GetProjectiles();
         for (var projectile: projectilesPlayerOne) {
+            if(!projectile.isVisible())
+                continue;
             for (var enemy: this.getGameObjects()){
                 if(enemy instanceof Enemy e){
                     if(projectile.intersect(e)){

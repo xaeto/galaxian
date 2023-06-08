@@ -43,8 +43,6 @@ public class AlienConvoy {
     }
 
     public void build(PApplet applet){
-        ArrayList<GameObject> enemies = new ArrayList<>();
-
         // initialize yellow ships
         for(int i = 0; i < 4; i++){
             var enemy = new YellowShip(32*(i + 2) + 300 -2, 40);

@@ -23,6 +23,10 @@ public class Scene {
         return this.GameObjects;
     }
 
+    public ArrayList<UIComponent> getUiComponents(){
+        return this.Components;
+    }
+
     public void RegisterComponent(UIComponent component){
         Components.add(component);
     }
@@ -37,7 +41,9 @@ public class Scene {
 
     public void drawScene(){
         var applet = this._applet;
+        applet.flush();
         applet.clear();
+        this._applet.background(0);
 
         for (UIComponent component : Components) {
             component.drawComponent();
