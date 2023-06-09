@@ -1,8 +1,11 @@
 import models.GameState;
+import scenes.IntroScene;
 import scenes.MainMenu;
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 import scenes.GameScene;
+
+import java.awt.*;
 
 public class Main extends PApplet {
     private GameScene _gameScene;
@@ -37,6 +40,15 @@ public class Main extends PApplet {
         if (keyCode > 255) {
             return;
         }
+
+        if(GameState.CurrentScene instanceof IntroScene){
+            if(event.getKeyCode() == 10){
+                GameState.CurrentScene = new MainMenu(this, width, height);
+                GameState.CurrentScene.buildScene();
+            }
+            return;
+        }
+
         if(GameState.CurrentScene instanceof MainMenu scene) {
             // move right
             if(keyCode == 87){
@@ -84,8 +96,10 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
-        MainMenu _menu = new MainMenu(this, width, height);
-        GameState.CurrentScene = _menu;
+        // MainMenu _menu = new MainMenu(this, width, height);
+        // GameState.CurrentScene = _menu;
+        GameState.CurrentScene = new IntroScene(this, width, height);
+        GameState.CurrentScene.buildScene();
         super.setup();
     }
 

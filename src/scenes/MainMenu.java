@@ -24,6 +24,9 @@ public class MainMenu extends Scene {
        return _listMenu.getCurrentIndex() + 1;
     }
 
+    /**
+     * This function builds a UI list menu with two options for selecting the number of players in a game.
+    */
     private void buildPlayerSelection(){
         // _listMenu
         _listMenu = new UIListMenu(_applet, _applet.width/2, _applet.height/2, 0);

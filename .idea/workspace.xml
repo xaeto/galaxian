@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="wip">
-      <change afterPath="$PROJECT_DIR$/src/models/HighscoreLabel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/models/ui_elements/UIMultiLabel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/scenes/IntroScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/sprites_normal_x2.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/sprites_normal_x2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Alien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/AlienConvoy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/AlienConvoy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/GreenAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GreenAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/YellowShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/YellowShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/GameScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +112,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Galaxian" type="MavenRunConfiguration" factoryName="Maven">
@@ -159,6 +165,7 @@
       <workItem from="1685880238061" duration="8150000" />
       <workItem from="1685899265299" duration="5642000" />
       <workItem from="1685995894185" duration="2327000" />
+      <workItem from="1686316870767" duration="4337000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1682681721887</created>
@@ -187,5 +194,15 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="wip" />
     <option name="LAST_COMMIT_MESSAGE" value="wip" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.util.NoSuchElementException" package="java.util" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

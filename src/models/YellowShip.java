@@ -5,7 +5,7 @@ import helpers.TextureHelper;
 import processing.core.PApplet;
 import spritelib.*;
 
-public class YellowShip extends Ship {
+public class YellowShip extends Alien {
     public YellowShip(int x, int y) {
         super(x, y, TextureConstants.YellowEnemyWidth, TextureConstants.YellowEnemyHeight);
     }
@@ -36,5 +36,6 @@ public class YellowShip extends Ship {
     @Override
     public void draw(PApplet applet){
         sprite.draw(applet, new Point(this.getX(), this.getY()));
+        super.draw(applet);
     }
 }

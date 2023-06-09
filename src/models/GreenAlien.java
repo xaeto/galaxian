@@ -10,6 +10,9 @@ public class GreenAlien extends Alien {
         super(x, y, 34, 23);
     }
 
+    /**
+     {@inheritDoc}
+     */
     @Override
     public void setup(PApplet applet){
         var seqSprite = new SequencedSprite(TextureConstants.GreenEnemyWidth, TextureConstants.GreenEnemyHeight, 2, ANCHORTYPE.TOP_LEFT);
@@ -40,5 +43,6 @@ public class GreenAlien extends Alien {
     public void draw(PApplet applet){
         var s = (SequencedSprite)sprite;
         s.draw(applet, new Point(this.getX(), this.getY()));
+        super.draw(applet);
     }
 }

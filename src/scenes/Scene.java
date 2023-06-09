@@ -7,6 +7,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class Scene {
     private PImage _background;
@@ -35,7 +36,7 @@ public class Scene {
         GameObjects.add(object);
     }
 
-    public void RegisterGameObjects(ArrayList<GameObject> objects){
+    public void RegisterGameObjects(Collection<GameObject> objects){
         GameObjects.addAll(objects);
     }
 
