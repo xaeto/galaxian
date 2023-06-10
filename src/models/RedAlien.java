@@ -33,10 +33,4 @@ public class RedAlien extends Alien {
         seqSprite.gotoSequence("idle");
         sprite = seqSprite;
     }
-
-    public void draw(PApplet applet){
-        var s = (SequencedSprite)sprite;
-        s.draw(applet, new Point(this.getX(), this.getY()));
-        super.draw(applet);
-    }
 }

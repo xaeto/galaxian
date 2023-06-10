@@ -33,9 +33,4 @@ public class YellowShip extends Alien {
         seqSprite.gotoSequence("idle");
         sprite = seqSprite;
     }
-    @Override
-    public void draw(PApplet applet){
-        sprite.draw(applet, new Point(this.getX(), this.getY()));
-        super.draw(applet);
-    }
 }
