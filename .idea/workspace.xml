@@ -6,15 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="removed redundant code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Alien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/AlienConvoy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/AlienConvoy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameObject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Projectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Projectile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Star.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +154,7 @@
       <workItem from="1685995894185" duration="2327000" />
       <workItem from="1686316870767" duration="4337000" />
       <workItem from="1686387406890" duration="25573000" />
-      <workItem from="1686506713824" duration="8529000" />
+      <workItem from="1686506713824" duration="8906000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1682681721887</created>

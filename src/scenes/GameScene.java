@@ -20,7 +20,7 @@ public class GameScene extends Scene {
     private Timer dropTimer;
     private UILabel scoreLabel;
     private boolean isGameOver = false;
-    private final int healthPoints = 25;
+    private final int healthPoints = 3;
     private boolean healthChanged = false;
     private Stack<UIImage> HealthPointStack = new Stack<>();
 
@@ -90,8 +90,10 @@ public class GameScene extends Scene {
             healthPoint.drawComponent();
         }
 
-        if(this.healthPoints == 0){
+        if(this.HealthPointStack.stream().count() == 0){
             System.out.println("Game is Over");
+            GameState.CurrentScene = new MainMenu(this._applet, this._applet.width, this._applet.height);
+            GameState.CurrentScene.buildScene();
         }
     }
 
@@ -200,6 +202,18 @@ public class GameScene extends Scene {
                     }
                 }
             }
+        }
+
+
+        for(var alien: _convoy.getAliens()){
+            var alienProjectilesToDelete = new ArrayList<Projectile>();
+            for(var projectile: alien.getProjectiles()){
+                if(projectile.intersect(GameState.PlayerOne)){
+                    alienProjectilesToDelete.add(projectile);
+                    this.HealthPointStack.pop();
+                }
+            }
+            alien.getProjectiles().removeAll(alienProjectilesToDelete);
         }
         projectilesPlayerOne.removeAll(projectilesToDelete);
 
