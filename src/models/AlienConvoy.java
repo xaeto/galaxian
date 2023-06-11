@@ -94,9 +94,9 @@ public class AlienConvoy {
             if(!alien.partOfConvoy)
                 continue;
             if(this.direction == Direction.LEFT){
-                alien.x -= 2;
+                alien.velocity.x = -2;
             } else {
-                alien.x += 2;
+                alien.velocity.x = 2;
             }
         }
     }

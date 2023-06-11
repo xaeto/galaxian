@@ -100,6 +100,7 @@ public class Main extends PApplet {
         GameState.CurrentScene = new IntroScene(this, width, height);
         GameState.CurrentScene.buildScene();
         frameRate(60);
+        smooth();
         super.setup();
     }
 

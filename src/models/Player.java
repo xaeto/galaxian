@@ -47,13 +47,11 @@ public class Player extends GameObject {
     }
 
     public void moveLeft(){
-        this.x -= 5;
-        this.angle -= 0.02*Math.PI;
+        this.velocity.x = -2;
     }
 
     public void moveRight(){
-        this.angle += 0.02*Math.PI;
-        this.x += 5;
+        this.velocity.x = 2;
     }
 
     @Override
@@ -61,8 +59,8 @@ public class Player extends GameObject {
         if(this.projectiles.stream().anyMatch(c-> c.isVisible())){
             return;
         }
-        float dx = (this.x + 14);
-        float dy =  (this.y+7.0f/2);
+        float dx = (this.getX() + 14);
+        float dy =  (this.getY()+7.0f/2);
         var projectile = new Projectile(applet, dx, dy, 10, ProjectileSource.Player);
         projectile.setup(applet);
         this.projectiles.add(projectile);

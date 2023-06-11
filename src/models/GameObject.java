@@ -1,10 +1,10 @@
 package models;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 import spritelib.Sprite;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -13,9 +13,10 @@ public abstract class GameObject {
     protected int Damage = 10;
     protected int Points = 10;
 
-    protected float x;
-    protected float y;
+    protected PVector position = new PVector();
+    protected PVector velocity = new PVector();
 
+    private PVector destination = new PVector();
     protected CopyOnWriteArrayList<Projectile> projectiles = new CopyOnWriteArrayList(new ArrayList());
 
     protected int width;
@@ -28,11 +29,26 @@ public abstract class GameObject {
 
     public GameObject(PApplet applet, float x, float y, int width, int height) {
         this._applet = applet;
-        this.x = x;
-        this.y = y;
+
+        this.position.x = x;
+        this.position.y = y;
+
         this.width = width;
         this.height = height;
         this.angle = Math.PI/2; // 90°
+    }
+
+    public void update(){
+        this.position.add(this.velocity);
+        this.velocity = new PVector();
+    }
+
+    public PVector getPosition(){
+        return this.position;
+    }
+
+    public PVector getVelocity(){
+        return this.velocity;
     }
 
     public boolean isAlive(){
@@ -41,7 +57,7 @@ public abstract class GameObject {
     public boolean isVisible(){
         if(this.sprite == null)
             return false;
-        return this.sprite.isVisible() && (this.x >= 0 && this.y <= this._applet.height);
+        return this.sprite.isVisible() && (this.position.x >= 0 && this.position.y <= this._applet.height);
     }
 
     /**
@@ -51,7 +67,11 @@ public abstract class GameObject {
     public void toggleVisibility() {
         if(this.sprite == null)
             return;
-        if(this.sprite.isVisible() || this.x < 0 || this.x > this._applet.width || this.y > this._applet.height || this.y < 0){
+        if(this.sprite.isVisible() ||
+                this.position.x < 0 ||
+                this.position.x > this._applet.width ||
+                this.position.y > this._applet.height ||
+                this.position.y < 0){
             this.sprite.hide();
             return;
         }
@@ -67,8 +87,8 @@ public abstract class GameObject {
      @return true if the two GameObjects intersect, false otherwise
      */
     public boolean intersect(GameObject other){
-        boolean checkX = this.x < other.getX()+other.width && this.x+this.width>other.getX();
-        boolean checkY = this.y < other.getY()+other.height && this.getY()+this.height>other.getY();
+        boolean checkX = this.position.x < other.getX()+other.width && this.getX()+this.width>other.getX();
+        boolean checkY = this.position.y < other.getY()+other.height && this.getY()+this.height>other.getY();
 
         return checkX && checkY;
     }
@@ -79,6 +99,7 @@ public abstract class GameObject {
      */
     public void draw(PApplet applet)  {
         for (var projectile : this.projectiles){
+            projectile.update();
             projectile.draw(applet);
             projectile.updateProjectile();
         }
@@ -91,18 +112,18 @@ public abstract class GameObject {
     public abstract void setup(PApplet applet);
 
     public float getX(){
-        return this.x;
+        return this.position.x;
     }
     public float getY(){
-        return this.y;
+        return this.position.y;
     }
 
     public void setX(float x) {
-        this.x = x;
+        this.position.x = x;
     }
 
     public void setY(float y) {
-        this.y = y;
+        this.position.y = y;
     }
 
     public int getWidth() {

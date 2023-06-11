@@ -15,15 +15,15 @@ public class Star extends GameObject {
 
     @Override
     public void draw(PApplet applet){
-        applet.fill(r, g, b, (this.y)%(applet.height/3) + 50);
-        applet.circle(this.x, this.y, applet.random(2.5f,6.5f));
+        applet.fill(r, g, b, (this.getY())%(applet.height/3) + 50);
+        applet.circle(this.getX(), this.getY(), applet.random(2.5f,6.5f));
     }
 
     public void update(PApplet applet){
-        if(y > applet.height){
-            this.y = applet.random(this.height);
+        if(getY() > applet.height){
+            this.position.y = applet.random(this.height);
         } else {
-            this.y += applet.random(0.5f, 2.5f);
+            this.position.y += applet.random(0.5f, 2.5f);
         }
     }
 

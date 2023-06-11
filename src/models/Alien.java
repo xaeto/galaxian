@@ -1,10 +1,13 @@
 package models;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 import spritelib.Point;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static processing.core.PApplet.degrees;
 
 public class Alien extends Enemy {
     protected boolean partOfConvoy = true;
@@ -55,7 +58,7 @@ public class Alien extends Enemy {
                         ProjectileSource.Enemy
                 );
 
-                projectile.angle = -Math.PI/2;
+                projectile.setDestination(player.getPosition().copy());
                 projectiles.add(projectile);
                 projectile.setup(applet);
             }

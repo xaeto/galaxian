@@ -7,9 +7,12 @@ import models.ui_elements.UIImage;
 import models.ui_elements.UILabel;
 import models.ui_elements.UILabelColor;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static processing.core.PApplet.degrees;
 
 public class GameScene extends Scene {
     private BoundsLogic _boundsLogic;
@@ -97,26 +100,9 @@ public class GameScene extends Scene {
         for(Alien alien: _convoy.getAliens()){
             if(alien.isInConvoy())
                 continue;
-            float dx = (player.getX() + player.getWidth()/2) - alien.getX();
-            float dy = (player.getY() + player.getHeight()/2) - alien.getY();
-
-            double normalize = Math.sqrt(dx*dx + dy*dy);
-            dx /= normalize;
-            dy /= normalize;
-
-            float angle = (float)Math.atan2(dy, dx);
-            angle = (float)Math.toDegrees(angle);
-            float newX = alien.getX();
-            if(player.getX() >= alien.getX()){
-                newX -= 3*(float)(Math.sin(angle));
-            } else {
-                newX += 3*(float)(Math.sin(angle));
-            }
-
-            float newY = alien.getY();
-            newY += 2;
-            alien.setX(newX);
-            alien.setY(newY);
+            PVector dir = PVector.sub(player.getPosition(), alien.getPosition());
+            dir.normalize();
+            alien.getVelocity().set(dir);
         }
     }
 

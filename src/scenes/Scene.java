@@ -71,6 +71,7 @@ public class Scene {
             if(!obj.isVisible())
                 continue;
             obj.draw(applet);
+            obj.update();
         }
         drawStars();
     }
