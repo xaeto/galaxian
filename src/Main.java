@@ -8,7 +8,6 @@ import scenes.GameScene;
 import java.awt.*;
 
 public class Main extends PApplet {
-    private GameScene _gameScene;
     private int[] activeKeys = new int[256];
     
     public static void main(String[] args) {
@@ -67,6 +66,7 @@ public class Main extends PApplet {
                     GameState.PlayerTwo = GameScene.InitializePlayerTwo(this);
                 }
                 GameScene game_scene = new GameScene(this, width, height);
+                GameState.Highscore = 0;
                 game_scene.addPlayers(GameState.PlayerOne, GameState.PlayerTwo);
                 game_scene.buildScene();
                 GameState.CurrentScene = game_scene;
