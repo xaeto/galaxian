@@ -17,7 +17,8 @@ public class GameScene extends Scene {
     private Timer dropTimer;
     private UILabel scoreLabel;
     private boolean isGameOver = false;
-    private int healthPoints = 25;
+    private final int healthPoints = 25;
+    private boolean healthChanged = false;
     private Stack<UIImage> HealthPointStack = new Stack<>();
 
     // This is a constructor for the `GameScene` class that takes in an instance of `PApplet` and the
@@ -78,16 +79,7 @@ public class GameScene extends Scene {
             updateAttackingEnemies();
             detectCollision();
         } else {
-            _convoy.setStageState(false);
-            redrawObjects = false;
-            var t = new Timer();
-            var task = new TimerTask(){
-                @Override
-                public void run() {
-                    _convoy.build(_applet);
-                }
-            };
-            t.schedule(task, 2500);
+            _convoy.reset(this._applet);
         }
 
         super.drawScene();
@@ -114,8 +106,15 @@ public class GameScene extends Scene {
 
             float angle = (float)Math.atan2(dy, dx);
             angle = (float)Math.toDegrees(angle);
-            float newX = alien.getX() + 3*(float)(Math.sin(angle));
-            float newY = alien.getY() + 2;
+            float newX = alien.getX();
+            if(player.getX() >= alien.getX()){
+                newX -= 3*(float)(Math.sin(angle));
+            } else {
+                newX += 3*(float)(Math.sin(angle));
+            }
+
+            float newY = alien.getY();
+            newY += 2;
             alien.setX(newX);
             alien.setY(newY);
         }
@@ -156,9 +155,7 @@ public class GameScene extends Scene {
         var task = new TimerTask() {
             @Override
             public void run() {
-                for(int i = 0; i < 3; i++){
-                    _convoy.dropAlien(_applet, GameState.PlayerOne);
-                }
+                _convoy.dropAlien(_applet, GameState.PlayerOne);
             }
         };
         dropTimer.scheduleAtFixedRate(task, 3500, 3500);

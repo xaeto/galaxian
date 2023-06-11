@@ -17,6 +17,10 @@ public class Alien extends Enemy {
     @Override
     public void draw(PApplet applet){
         sprite.draw(applet, new Point(this.getX(), this.getY()));
+        if(!this.isVisible() && this.shootTimer != null){
+            shootTimer.purge();
+            shootTimer.cancel();
+        }
         super.draw(applet);
     }
 

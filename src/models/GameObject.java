@@ -41,7 +41,7 @@ public abstract class GameObject {
     public boolean isVisible(){
         if(this.sprite == null)
             return false;
-        return this.sprite.isVisible();
+        return this.sprite.isVisible() && (this.x >= 0 && this.y <= this._applet.height);
     }
 
     /**
@@ -49,6 +49,8 @@ public abstract class GameObject {
      If the sprite is currently visible, it will be hidden. If it is hidden, it will be shown.
      */
     public void toggleVisibility() {
+        if(this.sprite == null)
+            return;
         if(this.sprite.isVisible() || this.x < 0 || this.x > this._applet.width || this.y > this._applet.height || this.y < 0){
             this.sprite.hide();
             return;

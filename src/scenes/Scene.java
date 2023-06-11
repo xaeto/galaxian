@@ -8,12 +8,13 @@ import processing.core.PImage;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Scene {
     private PImage _background;
     protected PApplet _applet;
-    private final ArrayList<UIComponent> Components = new ArrayList<>();
-    private final ArrayList<GameObject> GameObjects = new ArrayList<>();
+    private final CopyOnWriteArrayList<UIComponent> Components = new CopyOnWriteArrayList (new ArrayList<>());
+    private final CopyOnWriteArrayList<GameObject> GameObjects = new CopyOnWriteArrayList(new ArrayList<>());
     private final ArrayList<Star> Stars = new ArrayList<>();
 
     protected boolean redrawObjects = true;
@@ -34,11 +35,11 @@ public class Scene {
         }
     }
 
-    public ArrayList<GameObject> getGameObjects(){
+    public CopyOnWriteArrayList<GameObject> getGameObjects(){
         return this.GameObjects;
     }
 
-    public ArrayList<UIComponent> getUiComponents(){
+    public CopyOnWriteArrayList<UIComponent> getUiComponents(){
         return this.Components;
     }
 
@@ -55,6 +56,7 @@ public class Scene {
     }
 
     public void drawScene(){
+        System.gc();
         var applet = this._applet;
         applet.flush();
         applet.clear();

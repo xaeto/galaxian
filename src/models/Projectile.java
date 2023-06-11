@@ -31,7 +31,8 @@ public class Projectile extends GameObject {
     @Override
     public void setup(PApplet applet){
         var multiSprite = new MultiSprite(3, 7, ANCHORTYPE.TOP_LEFT);
-        multiSprite.addFrames(applet, TextureHelper.loadSpriteMap(applet), 132, 392, 1);
+        var img = applet.loadImage("./assets/sprites_normal_x2.png");
+        multiSprite.addFrames(applet, img, 132, 392, 1);
         multiSprite.draw(applet, new Point(this.getX(), this.getY() - this.getHeight() - 2));
 
         sprite = multiSprite;

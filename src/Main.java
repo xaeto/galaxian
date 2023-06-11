@@ -10,6 +10,7 @@ import java.awt.*;
 public class Main extends PApplet {
     private GameScene _gameScene;
     private int[] activeKeys = new int[256];
+    
     public static void main(String[] args) {
         PApplet.main(Main.class);
     }
