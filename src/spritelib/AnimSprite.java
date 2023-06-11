@@ -46,7 +46,7 @@ public class AnimSprite extends MultiSprite
         if ( nextFrameAt < applet.millis() )    // is the next frame due?
         {
             nextFrame();
-            nextFrameAt = applet.millis() + framerate*100;    // the next frame lies "framerate millis" in the future
+            nextFrameAt = applet.millis() + framerate;    // the next frame lies "framerate millis" in the future
         }
     }
 

@@ -14,10 +14,24 @@ public class Scene {
     protected PApplet _applet;
     private final ArrayList<UIComponent> Components = new ArrayList<>();
     private final ArrayList<GameObject> GameObjects = new ArrayList<>();
+    private final ArrayList<Star> Stars = new ArrayList<>();
+
+    protected boolean redrawObjects = true;
 
     public Scene(PApplet applet, PImage background){
         this._background = background;
         this._applet = applet;
+    }
+
+    public ArrayList<Star> getStars(){
+        return this.Stars;
+    }
+
+    public void drawStars(){
+        for (var star: getStars()) {
+            star.update(this._applet);
+            star.draw(this._applet);
+        }
     }
 
     public ArrayList<GameObject> getGameObjects(){
@@ -49,31 +63,23 @@ public class Scene {
         for (UIComponent component : Components) {
             component.drawComponent();
         }
-
-        ArrayList<GameObject> objectsToDelete = new ArrayList<>();
-        for (GameObject gameObject : GameObjects) {
-            if(gameObject == null)
+        for (GameObject obj: this.GameObjects) {
+            if(obj == null)
                 continue;
-            if(!gameObject.isAlive()){
-                objectsToDelete.add(gameObject);
-            }
-            if(gameObject instanceof Star star){
-                star.update(applet);
-            }
-            if(gameObject.isVisible()){
-                gameObject.draw(applet);
-            }
+            if(!obj.isVisible())
+                continue;
+            obj.draw(applet);
         }
-        GameObjects.removeAll(objectsToDelete);
+        drawStars();
     }
 
     public void buildScene(){
         for(int i = 0; i < 32; ++i){
             float x = _applet.random(_applet.width);
             float y = _applet.random(_applet.height);
-            var star = new Star(x, y, 1, 2);
+            var star = new Star(this._applet, x, y, 1, 2);
             star.setup(this._applet);
-            RegisterGameObject(star);
+            Stars.add(star);
         }
     }
 }

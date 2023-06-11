@@ -5,8 +5,8 @@ import spritelib.SequencedSprite;
 
 public class Enemy extends GameObject {
 
-    public Enemy(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    public Enemy(PApplet applet, float x, float y, int width, int height) {
+        super(applet, x, y, width, height);
     }
 
     /**
@@ -14,22 +14,13 @@ public class Enemy extends GameObject {
      @param applet the PApplet instance used for drawing
      */
     @Override
-    public void shoot(PApplet applet){
-        float dx = (this.x + 3);
-        float dy =  (this.y+7.0f/2);
-        var projectile = new Projectile(dx, dy, 10, ProjectileSource.Enemy);
-        this.projectiles.add(projectile);
-    }
-
-    @Override
     public void draw(PApplet applet) {
         super.draw(applet);
     }
 
-    // This method is changing the sprite animation sequence of the Enemy object to "die"
-    public void die(){
-        var seq = (SequencedSprite)this.sprite;
-        seq.gotoSequence("die");
+    @Override
+    public void setup(PApplet applet) {
+
     }
 
     /**

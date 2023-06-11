@@ -87,4 +87,9 @@ public class MainMenu extends Scene {
         buildHighScore();
         super.buildScene();
     }
+
+    @Override
+    public void drawScene(){
+        super.drawScene();
+    }
 }

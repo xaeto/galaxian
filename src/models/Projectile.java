@@ -2,7 +2,6 @@ package models;
 
 import helpers.TextureHelper;
 import processing.core.PApplet;
-import processing.core.PVector;
 import spritelib.ANCHORTYPE;
 import spritelib.MultiSprite;
 import spritelib.Point;
@@ -11,10 +10,8 @@ public class Projectile extends GameObject {
     private int _damage;
     private int _speed;
     private ProjectileSource _source;
-    private PVector destination = new PVector();
-
-    public Projectile(float x, float y, int speed, ProjectileSource source) {
-        super(x, y, 3, 7);
+    public Projectile(PApplet applet, float x, float y, int speed, ProjectileSource source) {
+        super(applet, x, y, 3, 7);
         this._source = source;
         this._speed = speed;
     }
@@ -42,12 +39,13 @@ public class Projectile extends GameObject {
 
     @Override
     public void draw(PApplet applet) {
+        if(this.sprite == null)
+            return;
         sprite.draw(applet, new Point(this.x, this.y));
     }
 
     public void updateProjectile(){
-        this.y -= 10*Math.sin(this._direction);
-        this.x += 10*Math.cos(this._direction);
+        this.y -= this._speed*Math.sin(this.angle);
         if(this.y < 0){
             this.toggleVisibility();
         }

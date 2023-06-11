@@ -6,13 +6,13 @@ import processing.core.PApplet;
 import spritelib.*;
 
 public class PurpleAlien extends Alien {
-    public PurpleAlien(int x, int y) {
-        super(x, y, 34, 23);
+    public PurpleAlien(PApplet applet, int x, int y) {
+        super(applet, x, y, 34, 23);
     }
 
     @Override
     public void setup(PApplet applet){
-        var seqSprite = new SequencedSprite(TextureConstants.PurpleEnemyWidth, TextureConstants.PurpleEnemyHeight, 5, ANCHORTYPE.TOP_LEFT);
+        var seqSprite = new SequencedSprite(TextureConstants.PurpleEnemyWidth, TextureConstants.PurpleEnemyHeight, 1000, ANCHORTYPE.TOP_LEFT);
         var img = TextureHelper.loadSpriteMap(applet);
         seqSprite.addFrames(applet, img, TextureConstants.PurpleEnemyOffsetX, TextureConstants.PurpleEnemyOffsetY, 2);
         var dieSequence = new Sequence("die");

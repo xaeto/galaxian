@@ -6,12 +6,12 @@ import processing.core.PApplet;
 import spritelib.*;
 
 public class YellowShip extends Alien {
-    public YellowShip(int x, int y) {
-        super(x, y, TextureConstants.YellowEnemyWidth, TextureConstants.YellowEnemyHeight);
+    public YellowShip(PApplet applet, int x, int y) {
+        super(applet, x, y, TextureConstants.YellowEnemyWidth, TextureConstants.YellowEnemyHeight);
     }
 
     public void setup(PApplet applet){
-        var seqSprite = new SequencedSprite(TextureConstants.YellowEnemyWidth, TextureConstants.YellowEnemyHeight, 30, ANCHORTYPE.TOP_LEFT);
+        var seqSprite = new SequencedSprite(TextureConstants.YellowEnemyWidth, TextureConstants.YellowEnemyHeight, 1000, ANCHORTYPE.TOP_LEFT);
         var img = TextureHelper.loadSpriteMap(applet);
         seqSprite.addFrames(applet, img, TextureConstants.GridGap, TextureConstants.YellowEnemyOffsetY, 2);
 

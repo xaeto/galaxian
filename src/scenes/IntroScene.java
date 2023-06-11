@@ -17,7 +17,6 @@ public class IntroScene extends Scene {
 
     @Override
     public void drawScene(){
-        this._applet.clear();
         animate();
         super.drawScene();
     }

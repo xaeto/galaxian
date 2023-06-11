@@ -9,8 +9,8 @@ public class Star extends GameObject {
     private float r;
     private float g;
     private float b;
-    public Star(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    public Star(PApplet applet, float x, float y, int width, int height) {
+        super(applet, x, y, width, height);
     }
 
     @Override

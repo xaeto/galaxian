@@ -1,10 +1,8 @@
 package models;
 
 import processing.core.PApplet;
-import spritelib.MultiSprite;
 import spritelib.Point;
 
-import java.util.OptionalLong;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,8 +10,8 @@ public class Alien extends Enemy {
     protected boolean partOfConvoy = true;
     protected Timer shootTimer;
 
-    public Alien(float x, float y, int width, int height) {
-        super(x, y, width, height);
+    public Alien(PApplet applet, float x, float y, int width, int height) {
+        super(applet, x, y, width, height);
     }
 
     @Override
@@ -24,7 +22,7 @@ public class Alien extends Enemy {
 
     /**
      * The function returns a boolean value indicating whether the object is part of a convoy or not.
-     * 
+     *
      * @return A boolean value indicating whether the object is part of a convoy or not.
      */
     public boolean isInConvoy(){
@@ -34,7 +32,7 @@ public class Alien extends Enemy {
     /**
      * The function starts an attack by creating a timer that periodically creates a projectile aimed at
      * the player's position.
-     * 
+     *
      * @param applet The PApplet object that is used to draw the game and handle user input.
      * @param player The player parameter is an instance of the Player class, which represents the player
      * character in the game. It is used in the startAttack method to calculate the angle at which the
@@ -46,15 +44,18 @@ public class Alien extends Enemy {
             @Override
             public void run() {
                 var projectile = new Projectile(
+                        applet,
                         getX(),
                         getY(),
-                        1,
+                        8,
                         ProjectileSource.Enemy
                 );
+
+                projectile.angle = -Math.PI/2;
                 projectiles.add(projectile);
                 projectile.setup(applet);
             }
         };
-        shootTimer.scheduleAtFixedRate(task, 500, 500);
+        shootTimer.scheduleAtFixedRate(task, 500, 1000);
     }
 }

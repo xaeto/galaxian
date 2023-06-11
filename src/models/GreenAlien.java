@@ -6,8 +6,8 @@ import processing.core.PApplet;
 import spritelib.*;
 
 public class GreenAlien extends Alien {
-    public GreenAlien(int x, int y) {
-        super(x, y, 34, 23);
+    public GreenAlien(PApplet applet, int x, int y) {
+        super(applet, x, y, 34, 23);
     }
 
     /**
@@ -15,7 +15,7 @@ public class GreenAlien extends Alien {
      */
     @Override
     public void setup(PApplet applet){
-        var seqSprite = new SequencedSprite(TextureConstants.GreenEnemyWidth, TextureConstants.GreenEnemyHeight, 2, ANCHORTYPE.TOP_LEFT);
+        var seqSprite = new SequencedSprite(TextureConstants.GreenEnemyWidth, TextureConstants.GreenEnemyHeight, 1000, ANCHORTYPE.TOP_LEFT);
         var img = TextureHelper.loadSpriteMap(applet);
         // add default frames
         seqSprite.addFrames(applet, img, TextureConstants.GreenEnemyOffsetX, TextureConstants.GreenEnemyOffsetY, 2);

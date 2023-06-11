@@ -2,20 +2,21 @@ package models;
 
 import processing.core.PApplet;
 
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 
 public class AlienConvoy {
-    private ArrayList<Alien> Aliens = new ArrayList<>();
+    private HashMap<Integer, Alien> Aliens = new HashMap<>(48);
     private Direction direction = Direction.RIGHT;
     private boolean dropDir = false;
 
-    public ArrayList<Alien> GetAliens() {
-        return Aliens;
+    public List<Alien> getAliens() {
+        return Aliens.values().stream().toList();
     }
 
-    public boolean getDropDir(){
-        return this.dropDir;
+    private PApplet _applet;
+    private boolean isStageBuild = false;
+    public AlienConvoy(PApplet applet){
+        _applet = applet;
     }
 
     // The `updateDirection()` method is updating the direction of the AlienConvoy based on the position of
@@ -25,8 +26,14 @@ public class AlienConvoy {
     // direction is set to LEFT, and if the leftmost alien is at the left edge of the screen, the direction
     // is set to RIGHT.
     public void updateDirection(){
-        GameObject leftObj = Aliens.stream().filter(c-> c.partOfConvoy == true).min(Comparator.comparing(GameObject::getX)).get();
-        GameObject rightObj = Aliens.stream().filter(c-> c.partOfConvoy == true).max(Comparator.comparing(GameObject::getX)).get();
+        if(Aliens.values().stream().noneMatch(c->c.partOfConvoy == true)){
+            return;
+        }
+        if(!isStageBuild){
+            return;
+        }
+        GameObject leftObj = Aliens.values().stream().filter(c-> c.partOfConvoy == true).min(Comparator.comparing(GameObject::getX)).get();
+        GameObject rightObj = Aliens.values().stream().filter(c-> c.partOfConvoy == true).max(Comparator.comparing(GameObject::getX)).get();
 
         if(rightObj.getX() == 768.0 - rightObj.width){
             this.direction = Direction.LEFT;
@@ -36,6 +43,7 @@ public class AlienConvoy {
             this.direction = Direction.RIGHT;
         }
     }
+
 
  /**
   * This function drops an alien from either the left or right side of the screen and starts an attack
@@ -49,14 +57,12 @@ public class AlienConvoy {
   * some way (e
   */
     public void dropAlien(PApplet applet, Player player){
-        Alien leftObj = Aliens.stream().min(Comparator.comparing(GameObject::getX)).get();
-        Alien rightObj = Aliens.stream().max(Comparator.comparing(GameObject::getX)).get();
+        if(Aliens.values().stream().filter(c-> c.isVisible()).count() == 0){
+            return;
+        }
+        Alien leftObj = Aliens.values().stream().min(Comparator.comparing(GameObject::getX)).get();
+        Alien rightObj = Aliens.values().stream().max(Comparator.comparing(GameObject::getX)).get();
 
-        float screen_side_left = applet.width /2 - leftObj.getX();
-        float screen_side_right = applet.width /2 + rightObj.getX();
-
-        System.out.println("left: " + screen_side_left);
-        System.out.println("right: " + screen_side_right);
         if(this.dropDir){
             leftObj.startAttack(applet, player);
             leftObj.partOfConvoy = false;
@@ -72,14 +78,18 @@ public class AlienConvoy {
     // boolean value indicating whether the stage is cleared. If the ArrayList is empty, it means
     // that all the aliens have been defeated and the stage is cleared.
     public boolean isStageCleared(){
-        return this.Aliens.size() == 0;
+        return this.Aliens.values().stream().filter(c-> c.isVisible()).count() == 0;
+    }
+
+    public void setStageState(boolean state){
+        this.isStageBuild = state;
     }
 
     /**
      * This function moves a convoy of aliens either left or right by adjusting their x-coordinates.
     */
     public void moveConvoy(){
-        for(Alien alien: Aliens){
+        for(Alien alien: Aliens.values()){
             if(!alien.partOfConvoy)
                 continue;
             if(this.direction == Direction.LEFT){
@@ -90,6 +100,52 @@ public class AlienConvoy {
         }
     }
 
+    public void reset(PApplet applet){
+        // initialize yellow ships
+        for(int i = 0; i < 4; i++){
+            var enemy = this.Aliens.get(i);
+            enemy.setX( 32*(i + 2) + 300 -2);
+            enemy.setY(40);
+            enemy.toggleVisibility();
+        }
+
+        // initialize red ships
+        for(int i = 0; i < 6; i++){
+            var enemy = this.Aliens.get(i);
+            enemy.setX(48*(i + 2) + 300 - 100 -2);
+            enemy.setY(40*2);
+            enemy.toggleVisibility();
+        }
+        // initialize purple ships
+        for(int i = 0; i < 8; i++){
+            var enemy = this.Aliens.get(i);
+            enemy.setX(48*(i + 2) + 300/2 -2);
+            enemy.setY(40*3);
+            enemy.toggleVisibility();
+        }
+
+        // initialize green ships
+        for(int j =0; j < 10; ++j) {
+            var enemy = this.Aliens.get(j);
+            enemy.setX(48*(j + 1) + 300/2 -2);
+            enemy.setY(40*4);
+            enemy.toggleVisibility();
+        }
+        for(int j =0; j < 10; ++j) {
+            var enemy = this.Aliens.get(j);
+            enemy.setX(48*(j + 1) + 300/2 -2);
+            enemy.setY(40*5);
+            enemy.toggleVisibility();
+        }
+        for(int j =0; j < 10; ++j) {
+            var enemy = this.Aliens.get(j);
+            enemy.setX(48*(j + 1) + 300/2 -2);
+            enemy.setY(40*6);
+            enemy.toggleVisibility();
+        }
+
+        isStageBuild = true;
+    }
     // The `build()` method is initializing a convoy of aliens by creating instances of different alien
     // classes (`YellowShip`, `RedAlien`, `PurpleAlien`, and `GreenAlien`) and adding them to the `Aliens`
     // ArrayList. The method takes an instance of the `PApplet` class as a parameter, which is used to call
@@ -99,39 +155,46 @@ public class AlienConvoy {
     public void build(PApplet applet){
         // initialize yellow ships
         for(int i = 0; i < 4; i++){
-            var enemy = new YellowShip(32*(i + 2) + 300 -2, 40);
+            var enemy = new YellowShip(this._applet, 32*(i + 2) + 300 -2, 40);
             enemy.setup(applet);
-            Aliens.add(enemy);
+            Aliens.put(i, enemy);
         }
 
+        int offset = 4;
         // initialize red ships
         for(int i = 0; i < 6; i++){
-            var enemy = new RedAlien(48*(i + 2) + 300 - 100 -2, 40*2);
+            var enemy = new RedAlien(this._applet, 48*(i + 2) + 300 - 100 -2, 40*2);
             enemy.setup(applet);
-            Aliens.add(enemy);
+            Aliens.put(i + offset, enemy);
         }
+        offset += 6;
         // initialize purple ships
         for(int i = 0; i < 8; i++){
-            var enemy = new PurpleAlien(48*(i + 2) + 300/2 -2, 40*3);
+            var enemy = new PurpleAlien(this._applet, 48*(i + 2) + 300/2 -2, 40*3);
             enemy.setup(applet);
-            Aliens.add(enemy);
+            Aliens.put(i + offset, enemy);
         }
 
+        offset += 8;
         // initialize green ships
         for(int j =0; j < 10; ++j) {
-            var enemy = new GreenAlien(48*(j + 1) + 300/2 -2, 40*4);
+            var enemy = new GreenAlien(this._applet, 48*(j + 1) + 300/2 -2, 40*4);
             enemy.setup(applet);
-            Aliens.add(enemy);
+            Aliens.put(j + offset, enemy);
         }
+        offset += 10;
         for(int j =0; j < 10; ++j) {
-            var enemy = new GreenAlien(48*(j + 1) + 300/2 -2, 40*5);
+            var enemy = new GreenAlien(this._applet,48*(j + 1) + 300/2 -2, 40*5);
             enemy.setup(applet);
-            Aliens.add(enemy);
+            Aliens.put(j + offset, enemy);
         }
+        offset += 10;
         for(int j =0; j < 10; ++j) {
-            var enemy = new GreenAlien(48*(j + 1) + 300/2 -2, 40*6);
+            var enemy = new GreenAlien(this._applet,48*(j + 1) + 300/2 -2, 40*6);
             enemy.setup(applet);
-            Aliens.add(enemy);
+            Aliens.put(j + offset, enemy);
         }
+
+        isStageBuild = true;
     }
 }

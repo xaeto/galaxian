@@ -2,6 +2,7 @@ package models.ui_elements;
 
 import processing.core.PApplet;
 import processing.core.PImage;
+import spritelib.Point;
 import spritelib.Sprite;
 
 import java.util.function.Function;
@@ -30,7 +31,9 @@ public class UIComponent {
     }
 
     public void drawComponent(){
-        System.out.println("drawing default component");
+        if(this.sprite == null)
+            return;
+        this.sprite.draw(this._applet, new Point(this.getX(), this.getY()));
     }
 
     public int getHeight(){

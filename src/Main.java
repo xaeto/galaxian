@@ -96,10 +96,9 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
-        // MainMenu _menu = new MainMenu(this, width, height);
-        // GameState.CurrentScene = _menu;
         GameState.CurrentScene = new IntroScene(this, width, height);
         GameState.CurrentScene.buildScene();
+        frameRate(60);
         super.setup();
     }
 

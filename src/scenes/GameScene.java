@@ -1,24 +1,24 @@
 package scenes;
 
-import com.sun.tools.jconsole.JConsoleContext;
 import constants.TextureConstants;
 import logic.BoundsLogic;
 import models.*;
+import models.ui_elements.UIImage;
 import models.ui_elements.UILabel;
 import models.ui_elements.UILabelColor;
 import processing.core.PApplet;
-import processing.core.PConstants;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class GameScene extends Scene {
     private BoundsLogic _boundsLogic;
-    private AlienConvoy _convoy = new AlienConvoy();
+    private AlienConvoy _convoy;
     private Timer dropTimer;
     private UILabel scoreLabel;
+    private boolean isGameOver = false;
+    private int healthPoints = 25;
+    private Stack<UIImage> HealthPointStack = new Stack<>();
 
     // This is a constructor for the `GameScene` class that takes in an instance of `PApplet` and the
     // width and height of the scene. It calls the constructor of the parent `Scene` class with the
@@ -26,28 +26,29 @@ public class GameScene extends Scene {
     // also initializes a new `BoundsLogic` object with the same width and height.
     public GameScene(PApplet applet, int width, int height) {
         super(applet, applet.createImage(width, height, 0));
+        _convoy = new AlienConvoy(this._applet);
         _boundsLogic = new BoundsLogic(width, height);
     }
 
     /**
      * The function initializes a player object with a given position and sets it up in a PApplet
-    * environment.
-    * 
-    * @param applet The applet parameter is an instance of the PApplet class, which is the main class for
-    * processing sketches. It is used to access various methods and properties of the Processing
-    * environment, such as the width and height of the sketch window. In this case, it is passed to the
-    * Player constructor and
-    * @return The method `InitializePlayer` is returning an instance of the `Player` class that has been
-    * initialized with the `setup` method and positioned at the center of the `applet` window.
-    */
+     * environment.
+     *
+     * @param applet The applet parameter is an instance of the PApplet class, which is the main class for
+     * processing sketches. It is used to access various methods and properties of the Processing
+     * environment, such as the width and height of the sketch window. In this case, it is passed to the
+     * Player constructor and
+     * @return The method `InitializePlayer` is returning an instance of the `Player` class that has been
+     * initialized with the `setup` method and positioned at the center of the `applet` window.
+     */
     public static Player InitializePlayer(PApplet applet){
-        var player = new Player( applet.width/2, 24);
+        var player = new Player( applet, applet.width/2, 24);
         player.setup(applet);
         return player;
     }
 
     public static Player InitializePlayerTwo(PApplet applet){
-        var player = new Player(100, 100);
+        var player = new Player(applet, 100, 100);
         player.setup(applet);
         return player;
     }
@@ -70,91 +71,104 @@ public class GameScene extends Scene {
         this.scoreLabel.setText(String.valueOf(GameState.Highscore), UILabelColor.Green, 1);
 
         _boundsLogic.handleConstraints(this.getGameObjects());
-        _convoy.moveConvoy();
-        _convoy.updateDirection();
 
-        updateAttackingEnemies();
-        detectCollision();
-        checkDeadEnemies();
-
-        if(_convoy.isStageCleared()){
-            refreshConvoy();
+        if(!_convoy.isStageCleared()){
+            _convoy.moveConvoy();
+            _convoy.updateDirection();
+            updateAttackingEnemies();
+            detectCollision();
+        } else {
+            _convoy.setStageState(false);
+            redrawObjects = false;
+            var t = new Timer();
+            var task = new TimerTask(){
+                @Override
+                public void run() {
+                    _convoy.build(_applet);
+                }
+            };
+            t.schedule(task, 2500);
         }
 
         super.drawScene();
-    }
+        for(var healthPoint: this.HealthPointStack){
+            healthPoint.drawComponent();
+        }
 
-    private void refreshConvoy(){
-       Timer t = new Timer();
-       var task = new TimerTask(){
-           @Override
-           public void run() {
-               buildEnemies();
-           }
-       };
-       t.schedule(task, 2500);
+        if(this.healthPoints == 0){
+            System.out.println("Game is Over");
+        }
     }
 
     private void updateAttackingEnemies(){
         var player = GameState.PlayerOne;
-        for(Alien alien: _convoy.GetAliens()){
+        for(Alien alien: _convoy.getAliens()){
             if(alien.isInConvoy())
                 continue;
-            float angle = 1/((alien.getY() - player.getY())/(alien.getX() - player.getX()));
-            var dx = alien.getX() + 2*(float)(Math.cos(angle));
-            var dy = alien.getY() - 2*(float)(Math.sin(angle));
+            float dx = (player.getX() + player.getWidth()/2) - alien.getX();
+            float dy = (player.getY() + player.getHeight()/2) - alien.getY();
 
-            alien.setX(dx);
-            alien.setY(dy);
-        }
-    }
+            double normalize = Math.sqrt(dx*dx + dy*dy);
+            dx /= normalize;
+            dy /= normalize;
 
-    /**
-     * Checks for dead enemies in the game and calls the "die" method on them.
-    */
-    private void checkDeadEnemies(){
-        for (GameObject obj: this.getGameObjects()){
-            if(obj instanceof Alien e && !e.isAlive()){
-                e.die();
-                this._convoy.GetAliens().remove(e);
-            }
+            float angle = (float)Math.atan2(dy, dx);
+            angle = (float)Math.toDegrees(angle);
+            float newX = alien.getX() + 3*(float)(Math.sin(angle));
+            float newY = alien.getY() + 2;
+            alien.setX(newX);
+            alien.setY(newY);
         }
     }
 
     /**
      * This function builds a convoy of enemies and registers them as game objects.
-    */
+     */
     public void buildEnemies(){
         _convoy.build(this._applet);
-        this.RegisterGameObjects(_convoy.GetAliens()
+        this.RegisterGameObjects(_convoy.getAliens()
                 .stream()
                 .map(c-> (GameObject)c)
                 .collect(Collectors.toList()));
     }
 
+    public void buildHealthCounter(){
+        float y = 16;
+        float x = this._applet.width - 3*12 + 24;
+
+        for(int i = 0; i < this.healthPoints; ++i){
+            var healthPoint = new UIImage(this._applet, x - 16*i, y, 0);
+            healthPoint.buildComponent();
+            this.HealthPointStack.push(healthPoint);
+        }
+    }
+
     /**
      * The function builds the game scene by creating enemies, a highscore display, and a timer that drops
-    * aliens periodically.
-    */
+     * aliens periodically.
+     */
     public void buildScene(){
         buildEnemies();
         buildHighscore();
+        buildHealthCounter();
 
         dropTimer = new Timer();
         var task = new TimerTask() {
             @Override
             public void run() {
-                _convoy.dropAlien(_applet, GameState.PlayerOne);
+                for(int i = 0; i < 3; i++){
+                    _convoy.dropAlien(_applet, GameState.PlayerOne);
+                }
             }
         };
-        dropTimer.scheduleAtFixedRate(task, 5000, 5000);
+        dropTimer.scheduleAtFixedRate(task, 3500, 3500);
 
         super.buildScene();
     }
 
     /**
      * This function builds a high score label and displays the current high score in a separate label.
-    */
+     */
     public void buildHighscore(){
         String highscore_label = "HIGH SCORE";
         UILabel label = new UILabel(
@@ -185,27 +199,32 @@ public class GameScene extends Scene {
      * and removes the affected objects.
      */
     public void detectCollision(){
-        var projectilesPlayerOne = GameState.PlayerOne.GetProjectiles();
+        var projectilesPlayerOne = GameState.PlayerOne.getProjectiles();
+        var projectilesToDelete = new ArrayList<Projectile>();
+
         for (var projectile: projectilesPlayerOne) {
             if(!projectile.isVisible())
                 continue;
-            for (var enemy: this.getGameObjects()){
-                if(enemy instanceof Enemy e){
-                    if(projectile.intersect(e)){
-                        enemy.takeDamage(500);
-                        projectile.toggleVisibility();
+            for (var e: this._convoy.getAliens()){
+                if(e.isVisible()){
+                    if(e.intersect(projectile)){
+                        e.takeDamage(100);
+                        if(!e.isAlive()){
+                            e.toggleVisibility();
+                        }
+                        projectilesToDelete.add(projectile);
+                        GameState.Highscore += 10;
                     }
                 }
             }
         }
+        projectilesPlayerOne.removeAll(projectilesToDelete);
 
-        var aliensToDelete = new ArrayList<Alien>();
-        for(var alien: this._convoy.GetAliens()){
-            if(GameState.PlayerOne.intersect(alien)){
-                aliensToDelete.add(alien);
+        for(var alien: this._convoy.getAliens()){
+            if(alien.intersect(GameState.PlayerOne) && alien.isVisible()){
                 alien.toggleVisibility();
+                this.HealthPointStack.pop();
             }
         }
-        this._convoy.GetAliens().removeAll(aliensToDelete);
     }
 }
