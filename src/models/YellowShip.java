@@ -5,6 +5,9 @@ import helpers.TextureHelper;
 import processing.core.PApplet;
 import spritelib.*;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class YellowShip extends Alien {
     public YellowShip(PApplet applet, int x, int y) {
         super(applet, x, y, TextureConstants.YellowEnemyWidth, TextureConstants.YellowEnemyHeight);
@@ -32,5 +35,42 @@ public class YellowShip extends Alien {
         );
         seqSprite.gotoSequence("idle");
         sprite = seqSprite;
+    }
+
+    @Override
+    public void startAttack(PApplet applet, Player player){
+        this.shootTimer = new Timer();
+        var task = new TimerTask() {
+            @Override
+            public void run() {
+                var projectile = new Projectile(
+                        applet,
+                        getX(),
+                        getY(),
+                        10,
+                        ProjectileSource.Enemy
+                );
+
+                var projectileTwo = new Projectile(
+                        applet,
+                        getX(),
+                        getY(),
+                        10,
+                        ProjectileSource.Enemy
+                );
+                projectile.setup(applet);
+
+                var dest = player.getPosition().copy();
+                dest.x += applet.random(1);
+                projectile.setDestination(dest);
+                projectiles.add(projectile);
+
+                var destTwo = player.getPosition().copy();
+                destTwo.x += applet.random(1);
+                projectileTwo.setDestination(destTwo);
+                projectiles.add(projectileTwo);
+            }
+        };
+        shootTimer.scheduleAtFixedRate(task, 500, 1000);
     }
 }

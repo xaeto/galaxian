@@ -1,6 +1,7 @@
 package scenes;
 
 import constants.TextureConstants;
+import helpers.SoundHelper;
 import logic.BoundsLogic;
 import models.*;
 import models.ui_elements.UIImage;
@@ -12,15 +13,14 @@ import processing.core.PVector;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static processing.core.PApplet.degrees;
-
 public class GameScene extends Scene {
     private BoundsLogic _boundsLogic;
     private AlienConvoy _convoy;
     private Timer dropTimer;
+    private Timer alienTask;
     private UILabel scoreLabel;
     private boolean isGameOver = false;
-    private final int healthPoints = 3;
+    private final int healthPoints = 25;
     private boolean healthChanged = false;
     private Stack<UIImage> HealthPointStack = new Stack<>();
 
@@ -82,7 +82,8 @@ public class GameScene extends Scene {
             updateAttackingEnemies();
             detectCollision();
         } else {
-            _convoy.reset(this._applet);
+            _convoy.reset();
+            alienTask.cancel();
         }
 
         super.drawScene();
@@ -99,12 +100,15 @@ public class GameScene extends Scene {
 
     private void updateAttackingEnemies(){
         var player = GameState.PlayerOne;
-        for(Alien alien: _convoy.getAliens()){
-            if(alien.isInConvoy())
-                continue;
-            PVector dir = PVector.sub(player.getPosition(), alien.getPosition());
-            dir.normalize();
-            alien.getVelocity().set(dir);
+        // update attacking aliens
+        for(GameObject obj: this.getGameObjects()){
+            if(obj instanceof Alien alien){
+                if(alien.isInConvoy())
+                    continue;
+                PVector dir = PVector.sub(player.getPosition(), alien.getPosition());
+                dir.normalize();
+                alien.getVelocity().set(dir);
+            }
         }
     }
 
@@ -147,6 +151,19 @@ public class GameScene extends Scene {
             }
         };
         dropTimer.scheduleAtFixedRate(task, 3500, 3500);
+
+        this.alienTask = new Timer();
+        var t = new TimerTask(){
+            @Override
+            public void run() {
+                var greenAlien = new GreenAlien(_applet, 0, (int)_applet.random(_applet.height));
+                greenAlien.setup(_applet);
+                greenAlien.setPartOfConvoy(false);
+                RegisterGameObject(greenAlien);
+                greenAlien.startAttack(_applet, GameState.PlayerOne);
+            }
+        };
+        this.alienTask.schedule(t, 2500);
 
         super.buildScene();
     }
@@ -203,7 +220,6 @@ public class GameScene extends Scene {
                 }
             }
         }
-
 
         for(var alien: _convoy.getAliens()){
             var alienProjectilesToDelete = new ArrayList<Projectile>();

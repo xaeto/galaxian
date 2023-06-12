@@ -1,8 +1,10 @@
 package models;
 
 import constants.TextureConstants;
+import helpers.SoundHelper;
 import helpers.TextureHelper;
 import processing.core.PApplet;
+import processing.sound.*;
 import spritelib.*;
 
 public class Player extends GameObject {
@@ -47,11 +49,11 @@ public class Player extends GameObject {
     }
 
     public void moveLeft(){
-        this.velocity.x = -2;
+        this.velocity.x = -4;
     }
 
     public void moveRight(){
-        this.velocity.x = 2;
+        this.velocity.x = 4;
     }
 
     @Override
@@ -64,5 +66,6 @@ public class Player extends GameObject {
         var projectile = new Projectile(applet, dx, dy, 10, ProjectileSource.Player);
         projectile.setup(applet);
         this.projectiles.add(projectile);
+        SoundHelper.playShootSound(applet);
     }
 }

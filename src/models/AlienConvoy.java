@@ -1,5 +1,6 @@
 package models;
 
+import helpers.SoundHelper;
 import processing.core.PApplet;
 
 import java.util.*;
@@ -101,10 +102,11 @@ public class AlienConvoy {
         }
     }
 
-    public void reset(PApplet applet){
+    public void reset(){
         // initialize yellow ships
         for(int i = 0; i < 4; i++){
             var enemy = this.Aliens.get(i);
+            enemy.projectiles.clear();
             enemy.setX( 32*(i + 2) + 300 -2);
             enemy.setY(40);
             enemy.toggleVisibility();
@@ -114,6 +116,7 @@ public class AlienConvoy {
         // initialize red ships
         for(int i = 0; i < 6; i++){
             var enemy = this.Aliens.get(offset + i);
+            enemy.projectiles.clear();
             enemy.setX(48*(i + 2) + 300 - 100 -2);
             enemy.setY(40*2);
             enemy.toggleVisibility();
@@ -122,6 +125,7 @@ public class AlienConvoy {
         // initialize purple ships
         for(int i = 0; i < 8; i++){
             var enemy = this.Aliens.get(offset + i);
+            enemy.projectiles.clear();
             enemy.setX(48*(i + 2) + 300/2 -2);
             enemy.setY(40*3);
             enemy.toggleVisibility();
@@ -131,6 +135,7 @@ public class AlienConvoy {
         // initialize green ships
         for(int j =0; j < 10; ++j) {
             var enemy = this.Aliens.get(offset + j);
+            enemy.projectiles.clear();
             enemy.setX(48*(j + 1) + 300/2 -2);
             enemy.setY(40*4);
             enemy.toggleVisibility();
@@ -138,6 +143,7 @@ public class AlienConvoy {
         offset += 10;
         for(int j =0; j < 10; ++j) {
             var enemy = this.Aliens.get(offset + j);
+            enemy.projectiles.clear();
             enemy.setX(48*(j + 1) + 300/2 -2);
             enemy.setY(40*5);
             enemy.toggleVisibility();
@@ -145,6 +151,7 @@ public class AlienConvoy {
         offset += 10;
         for(int j =0; j < 10; ++j) {
             var enemy = this.Aliens.get(offset + j);
+            enemy.projectiles.clear();
             enemy.setX(48*(j + 1) + 300/2 -2);
             enemy.setY(40*6);
             enemy.toggleVisibility();
@@ -166,14 +173,12 @@ public class AlienConvoy {
             Aliens.add(enemy);
         }
 
-        int offset = 4;
         // initialize red ships
         for(int i = 0; i < 6; i++){
             var enemy = new RedAlien(this._applet, 48*(i + 2) + 300 - 100 -2, 40*2);
             enemy.setup(applet);
             Aliens.add(enemy);
         }
-        offset += 6;
         // initialize purple ships
         for(int i = 0; i < 8; i++){
             var enemy = new PurpleAlien(this._applet, 48*(i + 2) + 300/2 -2, 40*3);
@@ -181,20 +186,17 @@ public class AlienConvoy {
             Aliens.add(enemy);
         }
 
-        offset += 8;
         // initialize green ships
         for(int j =0; j < 10; ++j) {
             var enemy = new GreenAlien(this._applet, 48*(j + 1) + 300/2 -2, 40*4);
             enemy.setup(applet);
             Aliens.add(enemy);
         }
-        offset += 10;
         for(int j =0; j < 10; ++j) {
             var enemy = new GreenAlien(this._applet,48*(j + 1) + 300/2 -2, 40*5);
             enemy.setup(applet);
             Aliens.add(enemy);
         }
-        offset += 10;
         for(int j =0; j < 10; ++j) {
             var enemy = new GreenAlien(this._applet,48*(j + 1) + 300/2 -2, 40*6);
             enemy.setup(applet);

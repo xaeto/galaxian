@@ -1,3 +1,4 @@
+import helpers.SoundHelper;
 import models.GameState;
 import scenes.IntroScene;
 import scenes.MainMenu;
@@ -102,6 +103,7 @@ public class Main extends PApplet {
         frameRate(60);
         smooth();
         super.setup();
+        SoundHelper.loopBackground(this);
     }
 
     @Override

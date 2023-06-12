@@ -25,7 +25,7 @@ public abstract class GameObject {
     protected double angle;
     protected Sprite sprite;
 
-    private PApplet _applet;
+    protected PApplet _applet;
 
     public GameObject(PApplet applet, float x, float y, int width, int height) {
         this._applet = applet;

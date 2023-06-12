@@ -1,5 +1,6 @@
 package models;
 
+import helpers.SoundHelper;
 import processing.core.PApplet;
 import processing.core.PVector;
 import spritelib.Point;
@@ -27,6 +28,9 @@ public class Alien extends Enemy {
         super.draw(applet);
     }
 
+    public void setPartOfConvoy(boolean partOfConvoy){
+        this.partOfConvoy = false;
+    }
     /**
      * The function returns a boolean value indicating whether the object is part of a convoy or not.
      *
@@ -61,8 +65,10 @@ public class Alien extends Enemy {
                 projectile.setDestination(player.getPosition().copy());
                 projectiles.add(projectile);
                 projectile.setup(applet);
+                SoundHelper.playShootSound(applet);
             }
         };
         shootTimer.scheduleAtFixedRate(task, 500, 1000);
+        SoundHelper.playJumpSound(applet);
     }
 }
