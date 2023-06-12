@@ -52,12 +52,8 @@ public class AlienConvoy {
   * 
   * @param applet an instance of the PApplet class, which is the main class for processing sketches in
   * the Processing environment.
-  * @param player The "player" parameter is an object of the "Player" class, which is likely a
-  * representation of the player-controlled character in the game. It is being passed into the
-  * "dropAlien" method as an argument, likely because the method needs to interact with the player in
-  * some way (e
   */
-    public void dropAlien(PApplet applet, Player player){
+    public void dropAlien(PApplet applet){
         if(Aliens.stream().filter(c-> c.isVisible()).count() == 0){
             return;
         }

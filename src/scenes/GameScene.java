@@ -225,7 +225,7 @@ public class GameScene extends Scene {
         var task = new TimerTask() {
             @Override
             public void run() {
-                _convoy.dropAlien(_applet, GameState.PlayerOne);
+                _convoy.dropAlien(_applet);
             }
         };
         dropTimer.scheduleAtFixedRate(task, 3500, 3500);
@@ -314,7 +314,17 @@ public class GameScene extends Scene {
             if(obj instanceof Alien alien && alien.isVisible()){
                 if(alien.intersect(GameState.PlayerOne)){
                     alien.toggleVisibility();
-                    HealthPointStack.pop();
+                    if(HealthPointStack.size() > 0){
+                        HealthPointStack.pop();
+                    }
+                }
+                if(GameState.PlayerTwo != null){
+                    if(alien.intersect(GameState.PlayerTwo)){
+                        alien.toggleVisibility();
+                        if(HealthPointStack.size() > 0){
+                            HealthPointStack.pop();
+                        }
+                    }
                 }
             }
         }

@@ -6,9 +6,6 @@ import processing.core.PApplet;
 import processing.event.KeyEvent;
 import scenes.GameScene;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class Main extends PApplet {
     private int[] activeKeys = new int[256];
     
@@ -132,7 +129,7 @@ public class Main extends PApplet {
 
         SoundFile bg = new SoundFile(this, "./assets/sounds/background.mp3", true);
         bg.amp(0.03f);
-        bg.play();
+        bg.loop();
 
         super.setup();
     }
