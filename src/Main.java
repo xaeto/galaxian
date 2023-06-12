@@ -1,4 +1,5 @@
 import models.GameState;
+import processing.sound.SoundFile;
 import scenes.IntroScene;
 import scenes.MainMenu;
 import processing.core.PApplet;
@@ -128,6 +129,11 @@ public class Main extends PApplet {
         GameState.CurrentScene.buildScene();
         frameRate(60);
         smooth();
+
+        SoundFile bg = new SoundFile(this, "./assets/sounds/background.mp3", true);
+        bg.amp(0.03f);
+        bg.play();
+
         super.setup();
     }
 
