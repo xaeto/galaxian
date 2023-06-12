@@ -35,8 +35,7 @@ public class GameScene extends Scene {
         _boundsLogic = new BoundsLogic(width, height);
     }
 
-    public void playerShoot(){
-        var player = GameState.PlayerOne;
+    public void playerShoot(Player player){
         if(!player.canShoot){
             return;
         }
@@ -57,12 +56,6 @@ public class GameScene extends Scene {
      */
     public static Player InitializePlayer(PApplet applet){
         var player = new Player( applet, applet.width/2, 24);
-        player.setup(applet);
-        return player;
-    }
-
-    public static Player InitializePlayerTwo(PApplet applet){
-        var player = new Player(applet, 100, 100);
         player.setup(applet);
         return player;
     }
@@ -146,7 +139,6 @@ public class GameScene extends Scene {
      * This function updates the attacking enemies' velocity towards the player's position.
      */
     private void updateAttackingEnemies(){
-        var player = GameState.PlayerOne;
         // update attacking aliens
         for(GameObject obj: this.getGameObjects()){
             if(!(obj instanceof Alien alien))
@@ -154,12 +146,21 @@ public class GameScene extends Scene {
             if(alien.isInConvoy())
                 continue;
 
-            PVector dir = PVector.sub(player.getPosition(), alien.getPosition());
+            Player p = GameState.PlayerOne;
+            if(GameState.PlayerTwo != null){
+                float playerOneDist = obj.getPosition().dist(GameState.PlayerOne.getPosition());
+                float playerTwoDist = obj.getPosition().dist(GameState.PlayerTwo.getPosition());
+                if(playerTwoDist < playerOneDist){
+                    p = GameState.PlayerTwo;
+                }
+            }
+
+            PVector dir = PVector.sub(p.getPosition(), alien.getPosition());
             dir.normalize();
             alien.getVelocity().set(dir);
 
             if(alien.canShoot && alien.isVisible()){
-                var proj = startAttack(_applet, alien, player);
+                var proj = startAttack(_applet, alien, p);
                 RegisterGameObject(proj);
             }
         }
@@ -170,7 +171,16 @@ public class GameScene extends Scene {
             }
             if(!(obj instanceof Alien alien))
                 continue;
-            PVector dir = PVector.sub(player.getPosition(), alien.getPosition());
+
+            Player p = GameState.PlayerOne;
+            if(GameState.PlayerTwo != null){
+                float playerOneDist = obj.getPosition().dist(GameState.PlayerOne.getPosition());
+                float playerTwoDist = obj.getPosition().dist(GameState.PlayerTwo.getPosition());
+                if(playerTwoDist < playerOneDist){
+                    p = GameState.PlayerTwo;
+                }
+            }
+            PVector dir = PVector.sub(p.getPosition(), alien.getPosition());
             dir.normalize();
             alien.getVelocity().set(dir);
         }
@@ -276,6 +286,12 @@ public class GameScene extends Scene {
                     if(proj.intersect(GameState.PlayerOne)){
                         projectilesToDelete.add(proj);
                         HealthPointStack.pop();
+                    }
+                    if(GameState.PlayerTwo != null){
+                        if(proj.intersect(GameState.PlayerTwo)){
+                            projectilesToDelete.add(proj);
+                            HealthPointStack.pop();
+                        }
                     }
                 } else if (proj.getProjectileSource() == ProjectileSource.Player){
                     for(var subObj: this.getGameObjects()){

@@ -84,8 +84,8 @@ public class Player extends GameObject {
      */
     @Override
     public Projectile shoot(PApplet applet){
-
         canShoot = false;
+
         float dx = (this.getX() + 14);
         float dy =  (this.getY()+7.0f/2);
         var projectile = new Projectile(applet, dx, dy, 10, ProjectileSource.Player);
@@ -98,7 +98,7 @@ public class Player extends GameObject {
         var resetTask = new TimerTask(){
             @Override
             public void run() {
-                GameState.PlayerOne.canShoot = true;
+                canShoot = true;
             }
         };
         t.schedule(resetTask, 600);

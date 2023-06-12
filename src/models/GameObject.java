@@ -12,8 +12,6 @@ public abstract class GameObject {
     protected PVector position = new PVector();
     protected PVector velocity = new PVector();
 
-    private PVector destination = new PVector();
-
     public boolean canShoot = true;
 
     protected int width;

@@ -77,7 +77,6 @@ public class Scene {
      */
     public void drawScene(){
         var applet = this._applet;
-        applet.flush();
         applet.clear();
         this._applet.background(0);
 

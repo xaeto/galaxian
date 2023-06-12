@@ -23,7 +23,7 @@ public class MainMenu extends Scene {
      * This function decreased the player count by advancing the selector in a list menu.
      */
     public void decreasePlayerCount(){
-        _listMenu.advanceSelector();
+        _listMenu.decreaseSelector();
     }
 
     /** The `initializeGame()` method is returning the current index of the `_listMenu` UIListMenu object

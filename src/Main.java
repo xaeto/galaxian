@@ -21,19 +21,33 @@ public class Main extends PApplet {
      */
     @Override
     public void draw() {
-        boolean right_pressed = activeKeys[68]  == 1;
-        boolean left_pressed = activeKeys[65]  == 1;
-        boolean space_pressed = activeKeys[32]  == 1;
+        boolean player_one_right_pressed = activeKeys[68]  == 1;
+        boolean player_one_left_pressed = activeKeys[65]  == 1;
+        boolean player_one_space_pressed = activeKeys[32]  == 1;
+        boolean played_two_right_pressed = activeKeys[39] == 1;
+        boolean player_two_left_pressed = activeKeys[37] == 1;
+        boolean player_two_up_pressed = activeKeys[38] == 1;
 
         if(GameState.CurrentScene instanceof GameScene scene) {
-            if(right_pressed){
+            if(player_one_right_pressed){
                 GameState.PlayerOne.moveRight();
             }
-            if(left_pressed){
+            if(player_one_left_pressed){
                 GameState.PlayerOne.moveLeft();
             }
-            if(space_pressed){
-                scene.playerShoot();
+            if(player_one_space_pressed){
+                scene.playerShoot(GameState.PlayerOne);
+            }
+            if (GameState.PlayerTwo != null) {
+                if (played_two_right_pressed) {
+                    GameState.PlayerTwo.moveRight();
+                }
+                if (player_two_left_pressed) {
+                    GameState.PlayerTwo.moveLeft();
+                }
+                if (player_two_up_pressed) {
+                    scene.playerShoot(GameState.PlayerTwo);
+                }
             }
         }
         GameState.CurrentScene.drawScene();
@@ -74,19 +88,13 @@ public class Main extends PApplet {
                     GameState.PlayerOne = GameScene.InitializePlayer(this);
                 } else  if(players == 2){
                     GameState.PlayerOne = GameScene.InitializePlayer(this);
-                    GameState.PlayerTwo = GameScene.InitializePlayerTwo(this);
+                    GameState.PlayerTwo = GameScene.InitializePlayer(this);
                 }
                 GameScene game_scene = new GameScene(this, width, height);
                 GameState.Highscore = 0;
                 game_scene.addPlayers(GameState.PlayerOne, GameState.PlayerTwo);
                 game_scene.buildScene();
                 GameState.CurrentScene = game_scene;
-            }
-            return;
-        }
-        if(keyCode == 32) {
-            if(GameState.CurrentScene instanceof GameScene scene) {
-                scene.playerShoot();
             }
             return;
         }
