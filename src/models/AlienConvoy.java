@@ -1,13 +1,12 @@
 package models;
 
-import helpers.SoundHelper;
 import processing.core.PApplet;
+import processing.core.PVector;
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class AlienConvoy {
-    private CopyOnWriteArrayList<Alien> Aliens = new CopyOnWriteArrayList();
+    private ArrayList<Alien> Aliens = new ArrayList();
     private Direction direction = Direction.RIGHT;
     private boolean dropDir = false;
 
@@ -66,10 +65,8 @@ public class AlienConvoy {
         Alien rightObj = Aliens.stream().max(Comparator.comparing(GameObject::getX)).get();
 
         if(this.dropDir){
-            leftObj.startAttack(applet, player);
             leftObj.partOfConvoy = false;
         } else {
-            rightObj.startAttack(applet, player);
             rightObj.partOfConvoy = false;
         }
         // alternate drop side
@@ -106,55 +103,49 @@ public class AlienConvoy {
         // initialize yellow ships
         for(int i = 0; i < 4; i++){
             var enemy = this.Aliens.get(i);
-            enemy.projectiles.clear();
             enemy.setX( 32*(i + 2) + 300 -2);
             enemy.setY(40);
-            enemy.toggleVisibility();
+            enemy.reset();
         }
         int offset = 4;
 
         // initialize red ships
         for(int i = 0; i < 6; i++){
             var enemy = this.Aliens.get(offset + i);
-            enemy.projectiles.clear();
             enemy.setX(48*(i + 2) + 300 - 100 -2);
             enemy.setY(40*2);
-            enemy.toggleVisibility();
+            enemy.reset();
         }
         offset += 6;
         // initialize purple ships
         for(int i = 0; i < 8; i++){
             var enemy = this.Aliens.get(offset + i);
-            enemy.projectiles.clear();
             enemy.setX(48*(i + 2) + 300/2 -2);
             enemy.setY(40*3);
-            enemy.toggleVisibility();
+            enemy.reset();
         }
 
         offset += 8;
         // initialize green ships
         for(int j =0; j < 10; ++j) {
             var enemy = this.Aliens.get(offset + j);
-            enemy.projectiles.clear();
             enemy.setX(48*(j + 1) + 300/2 -2);
             enemy.setY(40*4);
-            enemy.toggleVisibility();
+            enemy.reset();
         }
         offset += 10;
         for(int j =0; j < 10; ++j) {
             var enemy = this.Aliens.get(offset + j);
-            enemy.projectiles.clear();
             enemy.setX(48*(j + 1) + 300/2 -2);
             enemy.setY(40*5);
-            enemy.toggleVisibility();
+            enemy.reset();
         }
         offset += 10;
         for(int j =0; j < 10; ++j) {
             var enemy = this.Aliens.get(offset + j);
-            enemy.projectiles.clear();
             enemy.setX(48*(j + 1) + 300/2 -2);
             enemy.setY(40*6);
-            enemy.toggleVisibility();
+            enemy.reset();
         }
 
         isStageBuild = true;

@@ -2,7 +2,6 @@ package models.ui_elements;
 
 import constants.TextureConstants;
 import helpers.TextureHelper;
-import models.ui_elements.UIComponent;
 import processing.core.PApplet;
 import spritelib.ANCHORTYPE;
 import spritelib.MultiSprite;

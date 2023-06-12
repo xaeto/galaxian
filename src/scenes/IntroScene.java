@@ -15,12 +15,19 @@ public class IntroScene extends Scene {
         super(applet, applet.createImage(width, height, 0));
     }
 
+    /**
+     * This function overrides the drawScene method and calls the animate method before calling the super
+     * class's drawScene method.
+     */
     @Override
     public void drawScene(){
         animate();
         super.drawScene();
     }
 
+    /**
+     * The function builds a scene with labels for a Galaxian game.
+     */
     @Override
     public void buildScene(){
         String galaxianLabelText = "WE ARE THE GALAXIANS";
@@ -56,6 +63,10 @@ public class IntroScene extends Scene {
         super.buildScene();
     }
 
+    /**
+     * This function animates the movement of three labels by adjusting their Y position and rebuilding
+    * their components.
+    */
     private void animate(){
         if(this.galaxianLabel.getY() > this._applet.height/3){
             this.galaxianLabel.setY(this.galaxianLabel.getY() - 2);

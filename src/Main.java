@@ -1,4 +1,3 @@
-import helpers.SoundHelper;
 import models.GameState;
 import scenes.IntroScene;
 import scenes.MainMenu;
@@ -6,7 +5,8 @@ import processing.core.PApplet;
 import processing.event.KeyEvent;
 import scenes.GameScene;
 
-import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Main extends PApplet {
     private int[] activeKeys = new int[256];
@@ -15,6 +15,10 @@ public class Main extends PApplet {
         PApplet.main(Main.class);
     }
 
+    /**
+     * This function checks for key presses and updates the game state accordingly, then draws the current
+     * scene.
+     */
     @Override
     public void draw() {
         boolean right_pressed = activeKeys[68]  == 1;
@@ -29,12 +33,18 @@ public class Main extends PApplet {
                 GameState.PlayerOne.moveLeft();
             }
             if(space_pressed){
-                GameState.PlayerOne.shoot(this);
+                scene.playerShoot();
             }
         }
         GameState.CurrentScene.drawScene();
     }
 
+    /**
+     * This is a function that handles key presses and performs different actions based on the current
+     * game state.
+     * 
+     * @param event A KeyEvent object representing a key press event.
+     */
     @Override
     public void keyPressed(KeyEvent event){
         int keyCode = event.getKeyCode();
@@ -76,8 +86,7 @@ public class Main extends PApplet {
         }
         if(keyCode == 32) {
             if(GameState.CurrentScene instanceof GameScene scene) {
-
-                GameState.PlayerOne.shoot(this);
+                scene.playerShoot();
             }
             return;
         }
@@ -87,6 +96,14 @@ public class Main extends PApplet {
         activeKeys[keyCode] = 1;
     }
 
+    /**
+     * This is an overridden function that handles key releases. It takes a KeyEvent
+     * object as a parameter,
+     * which represents a key release event. The function extracts the key code from
+     * the event and sets the
+     * corresponding value in the activeKeys array to 0, indicating that the key is
+     * no longer being pressed.
+     */
     @Override
     public void keyReleased(KeyEvent event){
         int keyCode = event.getKeyCode();
@@ -103,9 +120,11 @@ public class Main extends PApplet {
         frameRate(60);
         smooth();
         super.setup();
-        SoundHelper.loopBackground(this);
     }
 
+    /**
+     * This function sets the size of the window to 800x600 in Java.
+     */
     @Override
     public void settings(){
         setSize(800, 600);

@@ -1,11 +1,13 @@
 package models;
 
 import constants.TextureConstants;
-import helpers.SoundHelper;
 import helpers.TextureHelper;
 import processing.core.PApplet;
-import processing.sound.*;
+import processing.sound.SoundFile;
 import spritelib.*;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Player extends GameObject {
     public Player(PApplet applet, float x, float y) {
@@ -59,9 +61,6 @@ public class Player extends GameObject {
     /**
      * This function removes all projectiles from a list.
      */
-    public void removeProjectile(){
-        this.projectiles.clear();
-    }
 
     /**
      * The function sets the velocity of an object to move left at a speed of 4 units per frame.
@@ -84,15 +83,26 @@ public class Player extends GameObject {
      * @param applet The PApplet object that is used to draw and interact with the sketch.
      */
     @Override
-    public void shoot(PApplet applet){
-        if(this.projectiles.stream().anyMatch(c-> c.isVisible())){
-            return;
-        }
+    public Projectile shoot(PApplet applet){
+
+        canShoot = false;
         float dx = (this.getX() + 14);
         float dy =  (this.getY()+7.0f/2);
         var projectile = new Projectile(applet, dx, dy, 10, ProjectileSource.Player);
         projectile.setup(applet);
-        this.projectiles.add(projectile);
-        SoundHelper.playShootSound(applet);
+
+        SoundFile shootSound = new SoundFile(this._applet, "./assets/sounds/enemy_fire.mp3", true);
+        shootSound.play();
+
+        var t = new Timer();
+        var resetTask = new TimerTask(){
+            @Override
+            public void run() {
+                GameState.PlayerOne.canShoot = true;
+            }
+        };
+        t.schedule(resetTask, 600);
+
+        return projectile;
     }
 }

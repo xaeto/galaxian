@@ -1,6 +1,5 @@
 package models;
 
-import helpers.TextureHelper;
 import processing.core.PApplet;
 import processing.core.PVector;
 import spritelib.ANCHORTYPE;
@@ -19,6 +18,10 @@ public class Projectile extends GameObject {
         this._speed = speed;
     }
 
+    public ProjectileSource getProjectileSource(){
+        return this._source;
+    }
+
     /**
      * This function sets the destination of an object to a given PVector.
      * 
@@ -30,8 +33,9 @@ public class Projectile extends GameObject {
         this.destination = dest;
     }
 
-    // The `getSpeed()` method is returning the value of the `_speed` variable, which represents the speed
-    // of the projectile.
+    /** The `getSpeed()` method is returning the value of the `_speed` variable, which represents the speed
+     * of the projectile.
+    */
     public int getSpeed(){
         return this._speed;
     }

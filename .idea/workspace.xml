@@ -10,19 +10,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="removed redundant code">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jl1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/jsminim.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/minim.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/mp3spi1_9_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/tritonus_aos.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/tritonus_share.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jl1.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/jsminim.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/minim.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/mp3spi1.9.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/tritonus_aos.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/libs/tritonus_share.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/HighscoreLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/HighscoreLabel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/galaxian.iml" beforeDir="false" afterPath="$PROJECT_DIR$/galaxian.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/SoundHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/TextHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Alien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/AlienConvoy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/AlienConvoy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/GameObjectBehaviour.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Projectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Projectile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ProjectileSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ProjectileSource.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/PurpleAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/PurpleAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/RedAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/RedAlien.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Star.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/YellowShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/YellowShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIListMenuSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIListMenuSelector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/GameScene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/IntroScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/IntroScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +190,7 @@
       <workItem from="1686316870767" duration="4337000" />
       <workItem from="1686387406890" duration="25573000" />
       <workItem from="1686506713824" duration="10391000" />
-      <workItem from="1686553378078" duration="7409000" />
+      <workItem from="1686553378078" duration="19843000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1682681721887</created>

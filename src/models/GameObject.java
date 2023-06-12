@@ -4,10 +4,6 @@ import processing.core.PApplet;
 import processing.core.PVector;
 import spritelib.Sprite;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 public abstract class GameObject {
     protected int Health = 100;
     protected int Damage = 10;
@@ -17,7 +13,8 @@ public abstract class GameObject {
     protected PVector velocity = new PVector();
 
     private PVector destination = new PVector();
-    protected CopyOnWriteArrayList<Projectile> projectiles = new CopyOnWriteArrayList(new ArrayList());
+
+    public boolean canShoot = true;
 
     protected int width;
     protected int height;
@@ -27,6 +24,15 @@ public abstract class GameObject {
 
     protected PApplet _applet;
 
+    /**
+     * This is a constructor for the GameObject class that initializes its
+     * properties such as position,
+     * width, height, and angle. It takes in parameters such as the PApplet instance
+     * used for drawing, the
+     * x and y coordinates of the object, and its width and height. It sets the
+     * position, width, height,
+     * and angle properties of the object to the values passed in as parameters.
+     */
     public GameObject(PApplet applet, float x, float y, int width, int height) {
         this._applet = applet;
 
@@ -38,6 +44,14 @@ public abstract class GameObject {
         this.angle = Math.PI/2; // 90°
     }
 
+    /**
+     * The `update()` method is updating the position of the GameObject by adding
+     * its velocity vector to
+     * its current position vector. It then resets the velocity vector to zero. This
+     * method is typically
+     * called once per frame to update the position of the GameObject based on its
+     * current velocity.
+     */
     public void update(){
         this.position.add(this.velocity);
         this.velocity = new PVector();
@@ -54,6 +68,7 @@ public abstract class GameObject {
     public boolean isAlive(){
         return Health > 0;
     }
+
     public boolean isVisible(){
         if(this.sprite == null)
             return false;
@@ -98,11 +113,6 @@ public abstract class GameObject {
      @param applet the PApplet instance used for drawing
      */
     public void draw(PApplet applet)  {
-        for (var projectile : this.projectiles){
-            projectile.update();
-            projectile.draw(applet);
-            projectile.updateProjectile();
-        }
     }
 
     /**
@@ -134,12 +144,9 @@ public abstract class GameObject {
         return this.height;
     }
 
-    public List<Projectile> getProjectiles(){
-        return this.projectiles;
-    }
-
-    public void shoot(PApplet applet){
+    public Projectile shoot(PApplet applet){
         setup(applet);
+        return new Projectile(applet, this.getX(), this.getY(), 1, ProjectileSource.Enemy);
     }
 
     public void takeDamage(int damage){

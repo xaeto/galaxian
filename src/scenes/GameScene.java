@@ -1,7 +1,6 @@
 package scenes;
 
 import constants.TextureConstants;
-import helpers.SoundHelper;
 import logic.BoundsLogic;
 import models.*;
 import models.ui_elements.UIImage;
@@ -20,18 +19,28 @@ public class GameScene extends Scene {
     private Timer alienTask;
     private UILabel scoreLabel;
     private boolean isGameOver = false;
-    private final int healthPoints = 25;
+    private final int healthPoints = 10;
     private boolean healthChanged = false;
     private Stack<UIImage> HealthPointStack = new Stack<>();
 
-    // This is a constructor for the `GameScene` class that takes in an instance of `PApplet` and the
-    // width and height of the scene. It calls the constructor of the parent `Scene` class with the
-    // `applet` and creates an image with the specified width and height using `applet.createImage()`. It
-    // also initializes a new `BoundsLogic` object with the same width and height.
+    /** This is a constructor for the `GameScene` class that takes in an instance of `PApplet` and the
+     * width and height of the scene. It calls the constructor of the parent `Scene` class with the
+     * `applet` and creates an image with the specified width and height using `applet.createImage()`. 
+     * It also initializes a new `BoundsLogic` object with the same width and height.
+    */ 
     public GameScene(PApplet applet, int width, int height) {
         super(applet, applet.createImage(width, height, 0));
         _convoy = new AlienConvoy(this._applet);
         _boundsLogic = new BoundsLogic(width, height);
+    }
+
+    public void playerShoot(){
+        var player = GameState.PlayerOne;
+        if(!player.canShoot){
+            return;
+        }
+        var proj = player.shoot(this._applet);
+        RegisterGameObject(proj);
     }
 
     /**
@@ -100,17 +109,68 @@ public class GameScene extends Scene {
         }
     }
 
+    /**
+     * The function starts an attack by creating a timer that periodically creates a projectile aimed at
+     * the player's position.
+     *
+     * @param applet The PApplet object that is used to draw the game and handle user input.
+     * @param player The player parameter is an instance of the Player class, which represents the player
+     * character in the game. It is used in the startAttack method to calculate the angle at which the
+     * enemy should shoot its projectile towards the player.
+     */
+    public Projectile startAttack(PApplet applet, Alien alien, Player player){
+        alien.canShoot = false;
+        var projectile = new Projectile(
+                applet,
+                alien.getX(),
+                alien.getY(),
+                5,
+                ProjectileSource.Enemy
+        );
+        projectile.setDestination(player.getPosition().copy());
+        projectile.setup(applet);
+        var task = new TimerTask() {
+            @Override
+            public void run() {
+                alien.canShoot = true;
+            }
+        };
+        var timer = new Timer();
+        timer.schedule(task, 3000);
+
+        return projectile;
+    }
+    /**
+     * This function updates the attacking enemies' velocity towards the player's position.
+     */
     private void updateAttackingEnemies(){
         var player = GameState.PlayerOne;
         // update attacking aliens
         for(GameObject obj: this.getGameObjects()){
-            if(obj instanceof Alien alien){
-                if(alien.isInConvoy())
-                    continue;
-                PVector dir = PVector.sub(player.getPosition(), alien.getPosition());
-                dir.normalize();
-                alien.getVelocity().set(dir);
+            if(!(obj instanceof Alien alien))
+                continue;
+            if(alien.isInConvoy())
+                continue;
+
+            PVector dir = PVector.sub(player.getPosition(), alien.getPosition());
+            dir.normalize();
+            alien.getVelocity().set(dir);
+
+            if(alien.canShoot && alien.isVisible()){
+                var proj = startAttack(_applet, alien, player);
+                RegisterGameObject(proj);
             }
+        }
+
+        for(GameObject obj: this.getGameObjects()){
+            if(this._convoy.getAliens().stream().anyMatch(c -> c == obj)){
+                continue;
+            }
+            if(!(obj instanceof Alien alien))
+                continue;
+            PVector dir = PVector.sub(player.getPosition(), alien.getPosition());
+            dir.normalize();
+            alien.getVelocity().set(dir);
         }
     }
 
@@ -125,6 +185,10 @@ public class GameScene extends Scene {
                 .collect(Collectors.toList()));
     }
 
+    /**
+     * This function builds a health counter by creating a stack of UIImage objects representing the
+     * player's health points.
+     */
     public void buildHealthCounter(){
         float y = 16;
         float x = this._applet.width - 3*12 + 24;
@@ -158,14 +222,13 @@ public class GameScene extends Scene {
         var t = new TimerTask(){
             @Override
             public void run() {
-                var greenAlien = new GreenAlien(_applet, 0, (int)_applet.random(_applet.height));
+                var greenAlien = new GreenAlien(_applet, 0, (int)_applet.random(_applet.height/2));
                 greenAlien.setup(_applet);
                 greenAlien.setPartOfConvoy(false);
                 RegisterGameObject(greenAlien);
-                greenAlien.startAttack(_applet, GameState.PlayerOne);
             }
         };
-        this.alienTask.schedule(t, 2500);
+        this.alienTask.scheduleAtFixedRate(t, 1000, 7500);
 
         super.buildScene();
     }
@@ -203,43 +266,40 @@ public class GameScene extends Scene {
      * and removes the affected objects.
      */
     public void detectCollision(){
-        var projectilesPlayerOne = GameState.PlayerOne.getProjectiles();
         var projectilesToDelete = new ArrayList<Projectile>();
 
-        for (var projectile: projectilesPlayerOne) {
-            if(!projectile.isVisible())
-                continue;
-            for (var e: this._convoy.getAliens()){
-                if(e.isVisible()){
-                    if(e.intersect(projectile)){
-                        e.takeDamage(100);
-                        if(!e.isAlive()){
-                            e.toggleVisibility();
+        for (var obj: this.getGameObjects()) {
+            if(obj instanceof Projectile proj){
+                if(proj.getProjectileSource() == ProjectileSource.Enemy){
+                    if(proj.intersect(GameState.PlayerOne)){
+                        projectilesToDelete.add(proj);
+                        HealthPointStack.pop();
+                    }
+                } else if (proj.getProjectileSource() == ProjectileSource.Player){
+                    for(var subObj: this.getGameObjects()){
+                        if(!(subObj instanceof Alien alien))
+                            continue;
+                        if(!alien.isVisible())
+                            continue;
+                        if(proj.intersect(alien)){
+                            GameState.Highscore += 10;
+                            projectilesToDelete.add(proj);
+                            alien.toggleVisibility();
+                            break;
                         }
-                        projectilesToDelete.add(projectile);
-                        GameState.Highscore += 10;
                     }
                 }
             }
         }
 
-        for(var alien: _convoy.getAliens()){
-            var alienProjectilesToDelete = new ArrayList<Projectile>();
-            for(var projectile: alien.getProjectiles()){
-                if(projectile.intersect(GameState.PlayerOne)){
-                    alienProjectilesToDelete.add(projectile);
-                    this.HealthPointStack.pop();
+        for(var obj: this.getGameObjects()){
+            if(obj instanceof Alien alien && alien.isVisible()){
+                if(alien.intersect(GameState.PlayerOne)){
+                    alien.toggleVisibility();
+                    HealthPointStack.pop();
                 }
             }
-            alien.getProjectiles().removeAll(alienProjectilesToDelete);
         }
-        projectilesPlayerOne.removeAll(projectilesToDelete);
-
-        for(var alien: this._convoy.getAliens()){
-            if(alien.intersect(GameState.PlayerOne) && alien.isVisible()){
-                alien.toggleVisibility();
-                this.HealthPointStack.pop();
-            }
-        }
+        this.getGameObjects().removeAll(projectilesToDelete);
     }
 }

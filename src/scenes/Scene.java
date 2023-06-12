@@ -47,16 +47,35 @@ public class Scene {
         Components.add(component);
     }
 
+    /**
+     * The `RegisterGameObject` method is adding a single `GameObject` object to the
+     * `GameObjects` list. It
+     * uses the `add` method of the `CopyOnWriteArrayList` class to add the
+     * specified object to the end of the list.
+     */
     public void RegisterGameObject(GameObject object){
         GameObjects.add(object);
     }
 
+    /**
+     * The `RegisterGameObjects` method is adding a collection of `GameObject`
+     * objects to the `GameObjects`
+     * list. It uses the `addAll` method of the `CopyOnWriteArrayList` class to add
+     * all the elements of the
+     * specified collection to the end of the list.
+     */
     public void RegisterGameObjects(Collection<GameObject> objects){
         GameObjects.addAll(objects);
     }
 
+    /**
+     * This is a method that draws the scene by clearing the screen, drawing UI
+     * components, updating and
+     * drawing game objects, and drawing stars. It also calls `System.gc()` to
+     * suggest that the garbage
+     * collector should run to free up memory.
+     */
     public void drawScene(){
-        System.gc();
         var applet = this._applet;
         applet.flush();
         applet.clear();
@@ -76,6 +95,10 @@ public class Scene {
         drawStars();
     }
 
+    /**
+     * This function builds a scene by creating 32 randomly positioned stars and
+     * adding them to a list.
+     */
     public void buildScene(){
         for(int i = 0; i < 32; ++i){
             float x = _applet.random(_applet.width);
