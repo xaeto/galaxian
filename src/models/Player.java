@@ -13,6 +13,11 @@ public class Player extends GameObject {
         this.Health = 300;
     }
 
+    /**
+     * Sets up a sequenced sprite with different frames and sequences for a game character.
+    * 
+    * @param applet The PApplet object that is used to load and display the sprite images.
+    */
     public void setup(PApplet applet){
         var seqSprite = new SequencedSprite(TextureConstants.PlayerWidth, TextureConstants.PlayerHeight, 30, ANCHORTYPE.TOP_LEFT);
         var img = TextureHelper.loadSpriteMap(applet);
@@ -35,6 +40,13 @@ public class Player extends GameObject {
         this.sprite = seqSprite;
     }
 
+    /**
+     * This function draws a sprite on a PApplet and changes its sequence based on the health of the
+     * object.
+     * 
+     * @param applet The PApplet object that is used for drawing the sprite. It is a parameter of the
+     * draw() method, which is called by the PApplet's draw() method in the main game loop.
+     */
     @Override
     public void draw(PApplet applet) {
         sprite.draw(applet, new Point(this.getX(), this.getY()));
@@ -44,18 +56,33 @@ public class Player extends GameObject {
         super.draw(applet);
     }
 
+    /**
+     * This function removes all projectiles from a list.
+     */
     public void removeProjectile(){
-        this.projectiles.remove(0);
+        this.projectiles.clear();
     }
 
+    /**
+     * The function sets the velocity of an object to move left at a speed of 4 units per frame.
+     */
     public void moveLeft(){
         this.velocity.x = -4;
     }
 
+    // The `moveRight()` method is setting the `x` component of the `velocity` vector of the `Player`
+    // object to a positive value of 4, which will cause the player to move to the right when its
+    // `update()` method is called.
     public void moveRight(){
         this.velocity.x = 4;
     }
 
+    /**
+     * This function creates a new projectile object and adds it to a list of projectiles if there are no
+     * visible projectiles already, and plays a shooting sound.
+     * 
+     * @param applet The PApplet object that is used to draw and interact with the sketch.
+     */
     @Override
     public void shoot(PApplet applet){
         if(this.projectiles.stream().anyMatch(c-> c.isVisible())){

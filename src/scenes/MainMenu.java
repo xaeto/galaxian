@@ -12,21 +12,30 @@ public class MainMenu extends Scene {
         this.buildScene();
     }
 
+    /**
+     * This function increases the player count by advancing the selector in a list menu.
+     */
     public void increasePlayerCount(){
         _listMenu.advanceSelector();
     }
 
+    /**
+     * This function decreased the player count by advancing the selector in a list menu.
+     */
     public void decreasePlayerCount(){
         _listMenu.advanceSelector();
     }
 
+    /** The `initializeGame()` method is returning the current index of the `_listMenu` UIListMenu object
+     * incremented by 1. This is used to determine the number of players selected in the main menu scene.
+     */
     public int initializeGame(){
-       return _listMenu.getCurrentIndex() + 1;
+        return _listMenu.getCurrentIndex() + 1;
     }
 
     /**
      * This function builds a UI list menu with two options for selecting the number of players in a game.
-    */
+     */
     private void buildPlayerSelection(){
         // _listMenu
         _listMenu = new UIListMenu(_applet, _applet.width/2, _applet.height/2, 0);
@@ -59,6 +68,10 @@ public class MainMenu extends Scene {
         _listMenu.buildComponent();
         RegisterComponent(_listMenu);
     }
+
+    /**
+     * This function builds and displays a high score label and score value.
+     */
     private void buildHighScore(){
         String highscore_label = "HIGH SCORE";
         UILabel label = new UILabel(
@@ -81,6 +94,11 @@ public class MainMenu extends Scene {
         RegisterComponent(label);
     }
 
+    /**
+     * This is overriding the `buildScene()` method from the parent class `Scene`. It first calls the
+     `buildPlayerSelection()` and `buildHighScore()` methods to build the UI components for the main menu
+     scene, and then calls the `buildScene()` method from the parent class to register all the UI components to be drawn.
+     */
     @Override
     public void buildScene(){
         buildPlayerSelection();
@@ -88,6 +106,9 @@ public class MainMenu extends Scene {
         super.buildScene();
     }
 
+    /**
+     * This function overrides the drawScene method and calls the drawScene method of the superclass.
+     */
     @Override
     public void drawScene(){
         super.drawScene();

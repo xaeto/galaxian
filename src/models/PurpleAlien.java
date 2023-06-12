@@ -10,6 +10,9 @@ public class PurpleAlien extends Alien {
         super(applet, x, y, 34, 23);
     }
 
+    /**
+     {@inheritDoc}
+     */
     @Override
     public void setup(PApplet applet){
         var seqSprite = new SequencedSprite(TextureConstants.PurpleEnemyWidth, TextureConstants.PurpleEnemyHeight, 1000, ANCHORTYPE.TOP_LEFT);

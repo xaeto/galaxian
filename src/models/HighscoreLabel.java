@@ -9,9 +9,11 @@ public class HighscoreLabel {
     private UILabel _highscoreLabel;
     private UILabel _scoreLabel;
     private PApplet _applet;
+
     private float x;
     private float y;
     private float z;
+
     public HighscoreLabel(PApplet applet, float x, float y, float z) {
         this._applet = applet;
         this.x = x;
@@ -19,11 +21,17 @@ public class HighscoreLabel {
         this.z = z;
     }
 
+    // The `drawComponent()` method is calling the `drawComponent()` method of the `_scoreLabel` and
+    // `_highscoreLabel` objects, which are instances of the `UILabel` class. This is likely used to
+    // display the high score label and score on the screen.
     public void drawComponent(){
         this._scoreLabel.drawComponent();
         this._highscoreLabel.drawComponent();
     }
 
+    /**
+     * This function builds a UI component consisting of a high score label and a score label.
+    */
     public void buildComponent(){
         String highscore_label = "HIGH SCORE";
         UILabel label = new UILabel(

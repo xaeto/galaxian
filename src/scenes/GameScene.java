@@ -63,14 +63,16 @@ public class GameScene extends Scene {
         }
     }
 
-    @Override
-    /* The `drawScene()` method is responsible for updating and rendering the game scene. It first updates
+    /**
+    The `drawScene()` method is responsible for updating and rendering the game scene. It first updates
      the score label with the current high score value. Then, it handles the constraints of all game
      objects using the `_boundsLogic` object. It then moves and updates the direction of the alien
      convoy using the `_convoy` object. It then updates the attacking enemies using the
      `updateAttackingEnemies()` method, detects collisions using the `detectCollision()` method, and
      checks for dead enemies using the `checkDeadEnemies()` method. Finally, it calls the `drawScene()`
-     method of the parent `Scene` class to render all game objects on the screen. */
+     method of the parent `Scene` class to render all game objects on the screen.
+     */
+    @Override
     public void drawScene(){
         this.scoreLabel.setText(String.valueOf(GameState.Highscore), UILabelColor.Green, 1);
 
