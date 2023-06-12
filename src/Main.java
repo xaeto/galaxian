@@ -115,6 +115,7 @@ public class Main extends PApplet {
 
     @Override
     public void setup() {
+        surface.setTitle("Galaxian");
         GameState.CurrentScene = new IntroScene(this, width, height);
         GameState.CurrentScene.buildScene();
         frameRate(60);

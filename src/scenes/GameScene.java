@@ -19,7 +19,8 @@ public class GameScene extends Scene {
     private Timer alienTask;
     private UILabel scoreLabel;
     private boolean isGameOver = false;
-    private final int healthPoints = 10;
+    private int stage = 1;
+    private final int healthPoints = 5;
     private boolean healthChanged = false;
     private Stack<UIImage> HealthPointStack = new Stack<>();
 
@@ -94,6 +95,7 @@ public class GameScene extends Scene {
             detectCollision();
         } else {
             _convoy.reset();
+            this.stage += 1;
             alienTask.cancel();
         }
 
@@ -103,7 +105,6 @@ public class GameScene extends Scene {
         }
 
         if(this.HealthPointStack.stream().count() == 0){
-            System.out.println("Game is Over");
             GameState.CurrentScene = new MainMenu(this._applet, this._applet.width, this._applet.height);
             GameState.CurrentScene.buildScene();
         }
@@ -120,11 +121,12 @@ public class GameScene extends Scene {
      */
     public Projectile startAttack(PApplet applet, Alien alien, Player player){
         alien.canShoot = false;
+        int speed = 4 + this.stage;
         var projectile = new Projectile(
                 applet,
                 alien.getX(),
                 alien.getY(),
-                5,
+                speed,
                 ProjectileSource.Enemy
         );
         projectile.setDestination(player.getPosition().copy());
