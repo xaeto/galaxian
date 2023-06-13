@@ -57,6 +57,7 @@ public class UIListMenu extends UIComponent {
 
     @Override
     public void drawComponent(){
+        this._applet.clear();
         _selector.drawComponent();
 
         for (UIListElement element: _listElements) {

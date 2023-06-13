@@ -22,6 +22,6 @@ public class UIListMenuSelector extends UIComponent {
 
     @Override
     public void drawComponent(){
-        this.sprite.draw(this._applet, new Point((int)this.getX() - 16, (int)this.getY()));
+        this.sprite.draw(this._applet, new Point(this.getX() - 16, this.getY()));
     }
 }

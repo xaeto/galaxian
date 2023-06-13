@@ -94,7 +94,6 @@ public class Main extends PApplet {
                 game_scene.buildScene();
                 GameState.CurrentScene = game_scene;
             }
-            return;
         }
         if(keyCode == 10) {
             GameState.Paused = !GameState.Paused;
