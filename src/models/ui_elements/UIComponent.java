@@ -1,21 +1,16 @@
 package models.ui_elements;
 
 import processing.core.PApplet;
-import processing.core.PImage;
 import spritelib.Point;
 import spritelib.Sprite;
 
-import java.util.function.Function;
-
 public class UIComponent {
-
-    private float x;
-    private float y;
-    private float z;
 
     protected Sprite sprite;
     protected PApplet _applet;
-
+    private float x;
+    private float y;
+    private float z;
     public UIComponent(PApplet applet, float x, float y, float z){
         this._applet = applet;
         this.x = x;
@@ -33,7 +28,10 @@ public class UIComponent {
     public void drawComponent(){
         if(this.sprite == null)
             return;
-        this.sprite.draw(this._applet, new Point(this.getX(), this.getY()));
+        this.sprite.draw(
+                this._applet,
+                new Point(this.getX(), this.getY())
+        );
     }
 
     public int getHeight(){
@@ -43,19 +41,21 @@ public class UIComponent {
     public float getX() {
         return this.x;
     }
-    public float getY() {
-        return this.y;
-    }
-    public float getZ() {
-        return this.z;
-    }
 
     public void setX(float x) {
         this.x = x;
     }
 
+    public float getY() {
+        return this.y;
+    }
+
     public void setY(float y) {
         this.y = y;
+    }
+
+    public float getZ() {
+        return this.z;
     }
 
     public void setZ(float z) {

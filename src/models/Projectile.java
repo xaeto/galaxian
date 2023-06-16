@@ -7,9 +7,9 @@ import spritelib.MultiSprite;
 import spritelib.Point;
 
 public class Projectile extends GameObject {
+    private final int _speed;
+    private final ProjectileSource _source;
     private int _damage;
-    private int _speed;
-    private ProjectileSource _source;
     private PVector destination;
 
     public Projectile(PApplet applet, float x, float y, int speed, ProjectileSource source) {
@@ -40,21 +40,21 @@ public class Projectile extends GameObject {
         return this._speed;
     }
 
-    // The `setDamage` method is setting the value of the `_damage` variable to the value of the `damage`
-    // parameter. This method is used to set the damage value of the projectile, which is used to determine
-    // how much damage the projectile will inflict on the target it hits.
-    public void setDamage(int damage){
-        this._damage = damage;
-    }
-
     /**
      * The function returns the value of the private variable "_damage".
-    * 
+    *
     * @return The method `getDamage()` is returning an integer value which is the `_damage` instance
     * variable of the class.
     */
     public int getDamage(){
         return this._damage;
+    }
+
+    // The `setDamage` method is setting the value of the `_damage` variable to the value of the `damage`
+    // parameter. This method is used to set the damage value of the projectile, which is used to determine
+    // how much damage the projectile will inflict on the target it hits.
+    public void setDamage(int damage){
+        this._damage = damage;
     }
 
     /**

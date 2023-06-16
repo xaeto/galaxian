@@ -3,7 +3,7 @@ package spritelib;
 public class Rectangle
 {
     private Point topleft;
-    private Size size;
+    private final Size size;
 
     public Rectangle()
     {

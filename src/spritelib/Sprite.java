@@ -8,12 +8,12 @@ import processing.core.PApplet;
  */
 public abstract class Sprite
 {
-    private Size size;                                  // the size is set by the constructor
+    private final Size size;                                  // the size is set by the constructor
     private ANCHORTYPE anchor = ANCHORTYPE.CENTER;      // position of the "plotpoint" relative to the surrounding rect
     private boolean visible;                            // is the sprite visible?
 
     // this instance is created as a member to prevent millions of small mem-allocations in getPlotRect
-    private Rectangle plotRectangle = new Rectangle();
+    private final Rectangle plotRectangle = new Rectangle();
 
     /**
      * Gets plot rectangle.

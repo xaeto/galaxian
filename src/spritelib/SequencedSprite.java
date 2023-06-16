@@ -13,7 +13,7 @@ import java.util.HashMap;
  */
 public class SequencedSprite extends AnimSprite
 {
-    private HashMap<String, Sequence> sequences = new HashMap<>();
+    private final HashMap<String, Sequence> sequences = new HashMap<>();
     private Sequence currentSequence = null;
     private int currentFrameNr = 0;
 

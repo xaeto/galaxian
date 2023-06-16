@@ -1,23 +1,20 @@
 package scenes;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.concurrent.CopyOnWriteArrayList;
 import models.GameObject;
 import models.Star;
 import models.ui_elements.UIComponent;
 import processing.core.PApplet;
 import processing.core.PImage;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 public class Scene {
-    private PImage _background;
-    protected PApplet _applet;
+    private final PImage _background;
     private final CopyOnWriteArrayList<UIComponent> Components = new CopyOnWriteArrayList (new ArrayList<>());
     private final CopyOnWriteArrayList<GameObject> GameObjects = new CopyOnWriteArrayList(new ArrayList<>());
     private final ArrayList<Star> Stars = new ArrayList<>();
-
-    protected boolean redrawObjects = true;
+    protected PApplet _applet;
 
     public Scene(PApplet applet, PImage background){
         this._background = background;
@@ -77,7 +74,6 @@ public class Scene {
      */
     public void drawScene(){
         var applet = this._applet;
-        applet.clear();
         this._applet.background(0);
 
         for (UIComponent component : Components) {

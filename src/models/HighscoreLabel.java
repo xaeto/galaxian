@@ -6,13 +6,12 @@ import models.ui_elements.UILabelColor;
 import processing.core.PApplet;
 
 public class HighscoreLabel {
+    private final PApplet _applet;
+    private final float x;
+    private final float y;
+    private final float z;
     private UILabel _highscoreLabel;
     private UILabel _scoreLabel;
-    private PApplet _applet;
-
-    private float x;
-    private float y;
-    private float z;
 
     public HighscoreLabel(PApplet applet, float x, float y, float z) {
         this._applet = applet;

@@ -9,7 +9,7 @@ import processing.core.PImage;
  */
 public class SingleSprite extends Sprite
 {
-    private PImage image;
+    private final PImage image;
 
     /**
      * Instantiates a new Single sprite.

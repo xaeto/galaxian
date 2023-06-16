@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 public class Sequence
 {
-    private ArrayList<Integer> frames = new ArrayList<>();
-    private String name;
+    private final ArrayList<Integer> frames = new ArrayList<>();
+    private final String name;
     private String nextSequenceName = null;
 
     /**

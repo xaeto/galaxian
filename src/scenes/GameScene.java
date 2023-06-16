@@ -1,6 +1,8 @@
 package scenes;
 
 import constants.TextureConstants;
+import java.util.*;
+import java.util.stream.Collectors;
 import logic.BoundsLogic;
 import models.*;
 import models.ui_elements.UIImage;
@@ -9,38 +11,26 @@ import models.ui_elements.UILabelColor;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 public class GameScene extends Scene {
-    private BoundsLogic _boundsLogic;
-    private AlienConvoy _convoy;
-    private Timer dropTimer;
-    private Timer alienTask;
-    private UILabel scoreLabel;
-    private boolean isGameOver = false;
-    private int stage = 1;
-    private final int healthPoints = 5;
-    private boolean healthChanged = false;
-    private Stack<UIImage> HealthPointStack = new Stack<>();
+  private final BoundsLogic _boundsLogic;
+  private final AlienConvoy _convoy;
+  private final int stage = 1;
+  private final int healthPoints = 6;
+  private final Stack<UIImage> HealthPointStack = new Stack<>();
+  private Timer dropTimer;
+  private Timer alienTask;
+  private UILabel scoreLabel;
 
-    /** This is a constructor for the `GameScene` class that takes in an instance of `PApplet` and the
-     * width and height of the scene. It calls the constructor of the parent `Scene` class with the
-     * `applet` and creates an image with the specified width and height using `applet.createImage()`. 
-     * It also initializes a new `BoundsLogic` object with the same width and height.
-    */ 
-    public GameScene(PApplet applet, int width, int height) {
-        super(applet, applet.createImage(width, height, 0));
-        _convoy = new AlienConvoy(this._applet);
-        _boundsLogic = new BoundsLogic(width, height);
-    }
-
-    public void playerShoot(Player player){
-        if(!player.canShoot){
-            return;
-        }
-        var proj = player.shoot(this._applet);
-        RegisterGameObject(proj);
+  /**
+   * This is a constructor for the `GameScene` class that takes in an instance of `PApplet` and the
+   * width and height of the scene. It calls the constructor of the parent `Scene` class with the
+   * `applet` and creates an image with the specified width and height using `applet.createImage()`.
+   * It also initializes a new `BoundsLogic` object with the same width and height.
+   */
+  public GameScene(PApplet applet, int width, int height) {
+    super(applet, applet.createImage(width, height, 0));
+    _convoy = new AlienConvoy(this._applet);
+    _boundsLogic = new BoundsLogic(width, height);
     }
 
     /**
@@ -58,6 +48,14 @@ public class GameScene extends Scene {
         var player = new Player( applet, applet.width/2, 24);
         player.setup(applet);
         return player;
+    }
+
+    public void playerShoot(Player player){
+        if(!player.canShoot){
+            return;
+        }
+        var proj = player.shoot(this._applet);
+        RegisterGameObject(proj);
     }
 
     public void addPlayers(Player ... players){
@@ -87,9 +85,8 @@ public class GameScene extends Scene {
             updateAttackingEnemies();
             detectCollision();
         } else {
-            _convoy.reset();
-            this.stage += 1;
-            alienTask.cancel();
+      _convoy.reset();
+      GameState.Stage += 1;
         }
 
         super.drawScene();

@@ -1,23 +1,20 @@
 package models;
 
-import processing.core.PApplet;
-import processing.core.PVector;
-
 import java.util.*;
+import processing.core.PApplet;
 
 public class AlienConvoy {
-    private ArrayList<Alien> Aliens = new ArrayList();
+    private final ArrayList<Alien> Aliens = new ArrayList();
+    private final PApplet _applet;
     private Direction direction = Direction.RIGHT;
     private boolean dropDir = false;
-
-    public List<Alien> getAliens() {
-        return Aliens.stream().toList();
-    }
-
-    private PApplet _applet;
     private boolean isStageBuild = false;
     public AlienConvoy(PApplet applet){
         _applet = applet;
+    }
+
+    public List<Alien> getAliens() {
+        return Aliens.stream().toList();
     }
 
     // The `updateDirection()` method is updating the direction of the AlienConvoy based on the position of
@@ -27,14 +24,14 @@ public class AlienConvoy {
     // direction is set to LEFT, and if the leftmost alien is at the left edge of the screen, the direction
     // is set to RIGHT.
     public void updateDirection(){
-        if(Aliens.stream().noneMatch(c->c.partOfConvoy == true)){
+        if(Aliens.stream().noneMatch(c-> c.partOfConvoy)){
             return;
         }
         if(!isStageBuild){
             return;
         }
-        GameObject leftObj = Aliens.stream().filter(c-> c.partOfConvoy == true).min(Comparator.comparing(GameObject::getX)).get();
-        GameObject rightObj = Aliens.stream().filter(c-> c.partOfConvoy == true).max(Comparator.comparing(GameObject::getX)).get();
+        GameObject leftObj = Aliens.stream().filter(c-> c.partOfConvoy).min(Comparator.comparing(GameObject::getX)).get();
+        GameObject rightObj = Aliens.stream().filter(c-> c.partOfConvoy).max(Comparator.comparing(GameObject::getX)).get();
 
         if(rightObj.getX() == 768.0 - rightObj.width){
             this.direction = Direction.LEFT;

@@ -4,6 +4,6 @@ package models;
 // and `Enemy`. This enumeration can be used to represent the source of a projectile in a game or
 // simulation.
 public enum ProjectileSource {
-    Player,
-    Enemy
+  Player,
+  Enemy
 }
