@@ -11,7 +11,6 @@ import spritelib.*;
 public class Player extends GameObject {
   public Player(PApplet applet, float x, float y) {
     super(applet, x, 550, 48, 48);
-    this.Health = 300;
   }
 
   /**
@@ -45,9 +44,6 @@ public class Player extends GameObject {
   @Override
   public void draw() {
     sprite.draw(this._applet, new Point(this.getX(), this.getY()));
-    if (this.Health > 0) {
-      ((SequencedSprite) sprite).gotoSequence("idle");
-    }
     super.draw();
   }
 
@@ -61,11 +57,10 @@ public class Player extends GameObject {
     this.velocity.x = -4;
   }
 
-  // The `moveRight()` method is setting the `x` component of the `velocity`
-  // vector of the `Player`
-  // object to a positive value of 4, which will cause the player to move to the
-  // right when its
-  // `update()` method is called.
+  /**
+   * The function sets the velocity of an object to move right at a speed of 4
+   * units per frame.
+   */
   public void moveRight() {
     this.velocity.x = 4;
   }

@@ -14,6 +14,9 @@ public class AlienConvoy {
         _applet = applet;
     }
 
+    /**
+     * Returns the Aliens-List
+     */
     public List<Alien> getAliens() {
         return Aliens.stream().toList();
     }

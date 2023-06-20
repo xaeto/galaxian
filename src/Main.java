@@ -86,6 +86,7 @@ public class Main extends PApplet {
         int players = scene.initializeGame();
         if (players == 1) {
           GameState.PlayerOne = GameScene.InitializePlayer(this);
+          GameState.PlayerTwo = null;
         } else if (players == 2) {
           GameState.PlayerOne = GameScene.InitializePlayer(this);
           GameState.PlayerTwo = GameScene.InitializePlayer(this);

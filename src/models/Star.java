@@ -26,6 +26,7 @@ public class Star extends GameObject {
    */
   @Override
   public void draw() {
+    // decrease/increase the alpha-channel based on the current y-value
     this._applet.fill(r, g, b, (this.getY()) % (this._applet.height / 3) + 50);
     this._applet.circle(this.getX(), this.getY(), this._applet.random(2.5f, 6.5f));
   }
@@ -67,6 +68,8 @@ public class Star extends GameObject {
   public void setup() {
     var applet = this._applet;
     this.sprite = new SingleSprite(applet.createImage(0, 0, 0));
+    
+    // generate random colors for the specific star
     this.r = applet.random(255);
     this.g = applet.random(255);
     this.b = applet.random(255);

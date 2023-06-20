@@ -60,6 +60,12 @@ public class GameScene extends Scene {
         return player;
     }
 
+    /**
+     * The function allows a player to shoot a projectile and registers it as a game
+     * object.
+     * 
+     * @param player The player object that is shooting the projectile.
+     */
     public void playerShoot(Player player) {
         if (!player.canShoot) {
             return;
@@ -68,6 +74,10 @@ public class GameScene extends Scene {
         RegisterGameObject(proj);
     }
 
+    /**
+     * The function adds multiple players to a game by registering them as game
+     * objects.
+     */
     public void addPlayers(Player... players) {
         for (Player player : players) {
             RegisterGameObject(player);
@@ -165,6 +175,8 @@ public class GameScene extends Scene {
                 continue;
 
             Player p = GameState.PlayerOne;
+            // In case of two players, calculate both distances from the specific enemy towards the player
+            // target the nearest player.
             if (GameState.PlayerTwo != null) {
                 float playerOneDist = obj.getPosition().dist(GameState.PlayerOne.getPosition());
                 float playerTwoDist = obj.getPosition().dist(GameState.PlayerTwo.getPosition());
@@ -183,6 +195,9 @@ public class GameScene extends Scene {
             }
         }
 
+        // Iiterating through all the game objects and checking if they are instances of the
+        // Alien class. If they are, calculate the distance between the object and the two players and set
+        // the direction of the Alien's velocity towards the closest player.
         for (GameObject obj : this.getGameObjects()) {
             if (this._convoy.getAliens().stream().anyMatch(c -> c == obj)) {
                 continue;
@@ -250,6 +265,10 @@ public class GameScene extends Scene {
         };
         dropTimer.scheduleAtFixedRate(task, 3500, 3500);
 
+        // Create a Timer and schedule a TimerTask to run at a fixed rate. The TimerTask
+        // creates a new GreenAlien object with random y-coordinate and adds it to the
+        // game's list of
+        // GameObjects. This process repeats every 7.5 seconds.
         this.alienTask = new Timer();
         var t = new TimerTask() {
             @Override
@@ -300,6 +319,11 @@ public class GameScene extends Scene {
     public void detectCollision() {
         var projectilesToDelete = new ArrayList<Projectile>();
 
+        // Iterate through all the game objects and check if they are instances of
+        // Projectile. If the Projectile is from an enemy, it checks if it intersects with either PlayerOne or
+        // PlayerTwo and removes the Projectile and pops a HealthPoint from the HealthPointStack. If the
+        // Projectile is from a player, it checks if it intersects with any visible Alien objects and adds 10
+        // to the Highscore, removes the Projectile, and toggles the visibility of the Alien.
         for (var obj : this.getGameObjects()) {
             if (obj instanceof Projectile proj) {
                 if (proj.getProjectileSource() == ProjectileSource.Enemy) {
@@ -330,6 +354,10 @@ public class GameScene extends Scene {
             }
         }
 
+        // Iterate through a list of game objects and check if each object is an
+        // instance of an Alien that is visible. If an Alien is visible and intersects with either PlayerOne or
+        // PlayerTwo, its visibility is toggled and a health point is removed from the HealthPointStack if it
+        // is not empty.
         for (var obj : this.getGameObjects()) {
             if (obj instanceof Alien alien && alien.isVisible()) {
                 if (alien.intersect(GameState.PlayerOne)) {

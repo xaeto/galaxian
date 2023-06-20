@@ -5,18 +5,38 @@ import processing.core.PVector;
 import spritelib.Sprite;
 
 public abstract class GameObject {
+  /** The `canShoot` variable is a boolean flag that indicates whether or not the GameObject can shoot a
+  * projectile. It is set to `true` by default, but can be changed to `false` if the GameObject is not
+  * able to shoot at a certain time.
+  */
   public boolean canShoot = true;
-  protected int Health = 100;
-  protected int Damage = 10;
-  protected int Points = 10;
+  /**
+   * Position of the GameObject
+  */
   protected PVector position = new PVector();
+  /** 
+   * Velocity of the GameObject
+  */
   protected PVector velocity = new PVector();
+  /** 
+   * Width of the Sprite
+  */
   protected int width;
+  /** 
+   * Height of the Sprite
+  */
   protected int height;
-
+  /** 
+   * Rotation Angle of the GameObject
+  */
   protected double angle;
+  /** 
+   * Sprite of the specific GameObject
+  */
   protected Sprite sprite;
-
+  /** 
+   * The specific PApplet the GameObject is supposed to be rendered on
+  */
   protected PApplet _applet;
 
   /**
@@ -61,10 +81,6 @@ public abstract class GameObject {
 
   public PVector getVelocity() {
     return this.velocity;
-  }
-
-  public boolean isAlive() {
-    return Health > 0;
   }
 
   public boolean isVisible() {
@@ -147,13 +163,5 @@ public abstract class GameObject {
   public Projectile shoot() {
     setup();
     return new Projectile(this._applet, this.getX(), this.getY(), 1, ProjectileSource.Enemy);
-  }
-
-  public void takeDamage(int damage) {
-    this.Health -= damage;
-  }
-
-  public int getHealth() {
-    return this.Health;
   }
 }
