@@ -12,13 +12,13 @@ public class GreenAlien extends Alien {
 
   /** {@inheritDoc} */
   @Override
-  public void setup(PApplet applet) {
-    var seqSprite =
-        new SequencedSprite(
-            TextureConstants.GreenEnemyWidth,
-            TextureConstants.GreenEnemyHeight,
-            1000,
-            ANCHORTYPE.TOP_LEFT);
+  public void setup() {
+    var applet = this._applet;
+    var seqSprite = new SequencedSprite(
+        TextureConstants.GreenEnemyWidth,
+        TextureConstants.GreenEnemyHeight,
+        1000,
+        ANCHORTYPE.TOP_LEFT);
     var img = TextureHelper.loadSpriteMap(applet);
     // add default frames
     seqSprite.addFrames(

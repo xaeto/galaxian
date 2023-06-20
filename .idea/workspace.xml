@@ -13,42 +13,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="removed redundant code">
+    <list default="true" id="05c1bfe5-eaef-48e2-b2c1-6cd0c4ff2afc" name="Changes" comment="bg sound">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/TextureConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/TextureConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/TextureHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/TextureHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/logic/BoundsLogic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/logic/BoundsLogic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Alien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Alien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/AlienConvoy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/AlienConvoy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Direction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Flag.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameObject.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GameState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/GreenAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/GreenAlien.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/HighscoreLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/HighscoreLabel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Projectile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Projectile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIInputField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIInputField.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UILabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UILabel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UILabelColor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UILabelColor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UILabelSymbol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UILabelSymbol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIListElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIListElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIListMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIListMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIListMenuSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIListMenuSelector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIMultiLabel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/ui_elements/UIMultiLabel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/PurpleAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/PurpleAlien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/RedAlien.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/RedAlien.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Ship.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Star.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Star.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/YellowShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/YellowShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/ui_elements/UIMultiLabel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/META-INF/MANIFEST.MF" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/GameScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/GameScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/IntroScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/IntroScene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/MainMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Scene.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/Rectangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/Rectangle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/Sequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/Sequence.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/SequencedSprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/SequencedSprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/SingleSprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/SingleSprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/Sprite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/Sprite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/spritelib/SpriteEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/spritelib/SpriteEvent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +91,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;google-java-format.settings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -147,7 +136,6 @@
       <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <ForceTestExec>false</ForceTestExec>
       <method v="2" />
     </configuration>
     <configuration name="Galaxian" type="MavenRunConfiguration" factoryName="Maven">
@@ -205,6 +193,11 @@
       <workItem from="1686387406890" duration="25573000" />
       <workItem from="1686506713824" duration="10391000" />
       <workItem from="1686553378078" duration="23973000" />
+      <workItem from="1686931275627" duration="34000" />
+      <workItem from="1686931417783" duration="97000" />
+      <workItem from="1686931526698" duration="1919000" />
+      <workItem from="1687241309176" duration="3476000" />
+      <workItem from="1687251604143" duration="3225000" />
     </task>
     <task id="LOCAL-00001" summary="wip">
       <created>1682681721887</created>

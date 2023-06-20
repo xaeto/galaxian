@@ -1,6 +1,7 @@
 package scenes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.concurrent.CopyOnWriteArrayList;
 import models.GameObject;
@@ -11,36 +12,36 @@ import processing.core.PImage;
 
 public class Scene {
     private final PImage _background;
-    private final CopyOnWriteArrayList<UIComponent> Components = new CopyOnWriteArrayList (new ArrayList<>());
+    private final CopyOnWriteArrayList<UIComponent> Components = new CopyOnWriteArrayList(new ArrayList<>());
     private final CopyOnWriteArrayList<GameObject> GameObjects = new CopyOnWriteArrayList(new ArrayList<>());
     private final ArrayList<Star> Stars = new ArrayList<>();
     protected PApplet _applet;
 
-    public Scene(PApplet applet, PImage background){
+    public Scene(PApplet applet, PImage background) {
         this._background = background;
         this._applet = applet;
     }
 
-    public ArrayList<Star> getStars(){
+    public ArrayList<Star> getStars() {
         return this.Stars;
     }
 
-    public void drawStars(){
-        for (var star: getStars()) {
-            star.update(this._applet);
-            star.draw(this._applet);
+    public void drawStars() {
+        for (var star : getStars()) {
+            star.update();
+            star.draw();
         }
     }
 
-    public CopyOnWriteArrayList<GameObject> getGameObjects(){
+    public CopyOnWriteArrayList<GameObject> getGameObjects() {
         return this.GameObjects;
     }
 
-    public CopyOnWriteArrayList<UIComponent> getUiComponents(){
+    public CopyOnWriteArrayList<UIComponent> getUiComponents() {
         return this.Components;
     }
 
-    public void RegisterComponent(UIComponent component){
+    public void RegisterComponent(UIComponent component) {
         Components.add(component);
     }
 
@@ -50,7 +51,7 @@ public class Scene {
      * uses the `add` method of the `CopyOnWriteArrayList` class to add the
      * specified object to the end of the list.
      */
-    public void RegisterGameObject(GameObject object){
+    public void RegisterGameObject(GameObject object) {
         GameObjects.add(object);
     }
 
@@ -61,8 +62,19 @@ public class Scene {
      * all the elements of the
      * specified collection to the end of the list.
      */
-    public void RegisterGameObjects(Collection<GameObject> objects){
+    public void RegisterGameObjects(Collection<GameObject> objects) {
         GameObjects.addAll(objects);
+    }
+
+    /**
+     * The `RegisterGameObjects` method is adding a collection of `GameObject`
+     * objects to the `GameObjects`
+     * list. It uses the `addAll` method of the `CopyOnWriteArrayList` class to add
+     * all the elements of the
+     * specified collection to the end of the list.
+     */
+    public void RegisterGameObjects(GameObject... objects) {
+        GameObjects.addAll(Arrays.stream(objects).toList());
     }
 
     /**
@@ -72,19 +84,19 @@ public class Scene {
      * suggest that the garbage
      * collector should run to free up memory.
      */
-    public void drawScene(){
+    public void drawScene() {
         var applet = this._applet;
         this._applet.background(0);
 
         for (UIComponent component : Components) {
             component.drawComponent();
         }
-        for (GameObject obj: this.GameObjects) {
-            if(obj == null)
+        for (GameObject obj : this.GameObjects) {
+            if (obj == null)
                 continue;
-            if(!obj.isVisible())
+            if (!obj.isVisible())
                 continue;
-            obj.draw(applet);
+            obj.draw();
             obj.update();
         }
         drawStars();
@@ -94,12 +106,12 @@ public class Scene {
      * This function builds a scene by creating 32 randomly positioned stars and
      * adding them to a list.
      */
-    public void buildScene(){
-        for(int i = 0; i < 32; ++i){
+    public void buildScene() {
+        for (int i = 0; i < 32; ++i) {
             float x = _applet.random(_applet.width);
             float y = _applet.random(_applet.height);
             var star = new Star(this._applet, x, y, 1, 2);
-            star.setup(this._applet);
+            star.setup();
             Stars.add(star);
         }
     }

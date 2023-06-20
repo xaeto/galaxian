@@ -20,36 +20,37 @@ public class HighscoreLabel {
         this.z = z;
     }
 
-    // The `drawComponent()` method is calling the `drawComponent()` method of the `_scoreLabel` and
-    // `_highscoreLabel` objects, which are instances of the `UILabel` class. This is likely used to
+    // The `drawComponent()` method is calling the `drawComponent()` method of the
+    // `_scoreLabel` and
+    // `_highscoreLabel` objects, which are instances of the `UILabel` class. This
+    // is likely used to
     // display the high score label and score on the screen.
-    public void drawComponent(){
+    public void drawComponent() {
         this._scoreLabel.drawComponent();
         this._highscoreLabel.drawComponent();
     }
 
     /**
-     * This function builds a UI component consisting of a high score label and a score label.
-    */
-    public void buildComponent(){
+     * This function builds a UI component consisting of a high score label and a
+     * score label.
+     */
+    public void buildComponent() {
         String highscore_label = "HIGH SCORE";
         UILabel label = new UILabel(
                 this._applet,
                 16,
                 16,
-                0
-        );
+                0);
         label.setText(highscore_label, UILabelColor.Red, 1);
         this._highscoreLabel = label;
 
         int current_score = GameState.Highscore;
-        int score_length = (int)String.valueOf(current_score).chars().count();
+        int score_length = (int) String.valueOf(current_score).chars().count();
         UILabel score = new UILabel(
                 this._applet,
-                label.getX() - score_length* TextureConstants.TextHeight/2 + highscore_label.length()*8,
-                label.getY() + TextureConstants.TextHeight + 2*TextureConstants.GridGap,
-                0
-        );
+                label.getX() - score_length * TextureConstants.TextHeight / 2 + highscore_label.length() * 8,
+                label.getY() + TextureConstants.TextHeight + 2 * TextureConstants.GridGap,
+                0);
         score.setText(String.valueOf(current_score), UILabelColor.Green, 1);
         this._scoreLabel = score;
     }

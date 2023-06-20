@@ -12,13 +12,14 @@ public class PurpleAlien extends Alien {
 
   /** {@inheritDoc} */
   @Override
-  public void setup(PApplet applet) {
-    var seqSprite =
-        new SequencedSprite(
-            TextureConstants.PurpleEnemyWidth,
-            TextureConstants.PurpleEnemyHeight,
-            1000,
-            ANCHORTYPE.TOP_LEFT);
+  public void setup() {
+
+    var applet = this._applet;
+    var seqSprite = new SequencedSprite(
+        TextureConstants.PurpleEnemyWidth,
+        TextureConstants.PurpleEnemyHeight,
+        1000,
+        ANCHORTYPE.TOP_LEFT);
     var img = TextureHelper.loadSpriteMap(applet);
     seqSprite.addFrames(
         applet, img, TextureConstants.PurpleEnemyOffsetX, TextureConstants.PurpleEnemyOffsetY, 2);

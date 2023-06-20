@@ -14,7 +14,8 @@ public class Main extends PApplet {
   }
 
   /**
-   * This function checks for key presses and updates the game state accordingly, then draws the
+   * This function checks for key presses and updates the game state accordingly,
+   * then draws the
    * current scene.
    */
   @Override
@@ -52,7 +53,8 @@ public class Main extends PApplet {
   }
 
   /**
-   * This is a function that handles key presses and performs different actions based on the current
+   * This is a function that handles key presses and performs different actions
+   * based on the current
    * game state.
    *
    * @param event A KeyEvent object representing a key press event.
@@ -102,9 +104,12 @@ public class Main extends PApplet {
   }
 
   /**
-   * This is an overridden function that handles key releases. It takes a KeyEvent object as a
-   * parameter, which represents a key release event. The function extracts the key code from the
-   * event and sets the corresponding value in the activeKeys array to 0, indicating that the key is
+   * This is an overridden function that handles key releases. It takes a KeyEvent
+   * object as a
+   * parameter, which represents a key release event. The function extracts the
+   * key code from the
+   * event and sets the corresponding value in the activeKeys array to 0,
+   * indicating that the key is
    * no longer being pressed.
    */
   @Override

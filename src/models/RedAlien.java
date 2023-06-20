@@ -12,13 +12,14 @@ public class RedAlien extends Alien {
 
   /** {@inheritDoc} */
   @Override
-  public void setup(PApplet applet) {
-    var seqSprite =
-        new SequencedSprite(
-            TextureConstants.RedEnemyWidth,
-            TextureConstants.RedEnemyHeight,
-            1000,
-            ANCHORTYPE.TOP_LEFT);
+  public void setup() {
+
+    var applet = this._applet;
+    var seqSprite = new SequencedSprite(
+        TextureConstants.RedEnemyWidth,
+        TextureConstants.RedEnemyHeight,
+        1000,
+        ANCHORTYPE.TOP_LEFT);
     var img = TextureHelper.loadSpriteMap(applet);
     seqSprite.addFrames(
         applet, img, TextureConstants.RedEnemyOffsetX, TextureConstants.RedEnemyOffsetY, 2);

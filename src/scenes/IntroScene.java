@@ -14,7 +14,8 @@ public class IntroScene extends Scene {
   }
 
   /**
-   * This function overrides the drawScene method and calls the animate method before calling the
+   * This function overrides the drawScene method and calls the animate method
+   * before calling the
    * super class's drawScene method.
    */
   @Override
@@ -27,40 +28,38 @@ public class IntroScene extends Scene {
   @Override
   public void buildScene() {
     String galaxianLabelText = "WE ARE THE GALAXIANS";
-    this.galaxianLabel =
-        new UILabel(
-            this._applet,
-            this._applet.width / 2 - galaxianLabelText.length() * 8,
-            this._applet.height + 100,
-            0);
+    this.galaxianLabel = new UILabel(
+        this._applet,
+        this._applet.width / 2 - galaxianLabelText.length() * 8,
+        this._applet.height + 100,
+        0);
     this.galaxianLabel.setText(galaxianLabelText, UILabelColor.Red, 1);
 
     String missionLabel = "DESTROY ALL ALIENS";
-    this.missionLabel =
-        new UILabel(
-            this._applet,
-            this._applet.width / 2 - missionLabel.length() * 8,
-            this._applet.height + 100 + 24,
-            0);
+    this.missionLabel = new UILabel(
+        this._applet,
+        this._applet.width / 2 - missionLabel.length() * 8,
+        this._applet.height + 100 + 24,
+        0);
     this.missionLabel.setText(missionLabel, UILabelColor.Red, 1);
 
     RegisterComponent(this.galaxianLabel);
     RegisterComponent(this.missionLabel);
 
     String enterText = "PRESS ENTER";
-    this.enterLabel =
-        new UILabel(
-            this._applet,
-            this._applet.width / 2 - enterText.length() * 8,
-            this._applet.height + 100 + 24 + 36,
-            0);
+    this.enterLabel = new UILabel(
+        this._applet,
+        this._applet.width / 2 - enterText.length() * 8,
+        this._applet.height + 100 + 24 + 36,
+        0);
     this.enterLabel.setText(enterText, UILabelColor.White, 1);
     RegisterComponent(this.enterLabel);
     super.buildScene();
   }
 
   /**
-   * This function animates the movement of three labels by adjusting their Y position and
+   * This function animates the movement of three labels by adjusting their Y
+   * position and
    * rebuilding their components.
    */
   private void animate() {
